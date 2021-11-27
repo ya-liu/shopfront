@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import './components/Header';
 import Header from './components/Header';
 
 function App() {
-  const [message, setMessage] = useState(null);
+  type Message = string;
+  const [message, setMessage] = useState< Message | null>(null);
 
   useEffect(() => {
     fetch(`/api`)
