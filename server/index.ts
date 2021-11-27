@@ -1,6 +1,10 @@
+import dotenv from 'dotenv';
 import express, { Request, Response, NextFunction } from 'express';
 
-const PORT = process.env.PORT || 3001;
+// initialize configuration
+dotenv.config();
+
+const PORT = process.env.SERVER_PORT;
 
 const app = express();
 
