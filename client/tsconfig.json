@@ -20,7 +20,7 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "sourceMap": true,
-    "outDir": "dist/js",
+    "outDir": "dist",
     "rootDir": "src"
   },
   "include": [

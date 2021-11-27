@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import './components/Header';
+import Header from './components/Header';
 
 function App() {
   const [message, setMessage] = useState(null);
@@ -13,12 +14,10 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          {!message ? 'Loading...' : message}
-        </p>
-      </header>
+      <Header />
+      <p>
+        {!message ? 'Loading...' : message}
+      </p>
     </div>
   );
 }
