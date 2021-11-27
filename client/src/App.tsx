@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
+import Button from '@mui/material/Button';
 import './App.css';
 import './components/Header';
 import Header from './components/Header';
 
 function App() {
   type Message = string;
-  const [message, setMessage] = useState< Message | null>(null);
+  const [message, setMessage] = useState< Message | undefined>(undefined);
 
   useEffect(() => {
     fetch(`/api`)
@@ -19,6 +20,7 @@ function App() {
       <p>
         {!message ? 'Loading...' : message}
       </p>
+      <Button variant="contained">Click me!</Button>
     </div>
   );
 }
