@@ -20,7 +20,7 @@ interface LocationWithTimezone {
 };
 
 const getLocationsWithTimezones = (req: Request, res: Response, next: NextFunction) => {
-  let locations: LocationWithTimezone[] = [
+  const locations: LocationWithTimezone[] = [
     {
       location: 'Germany',
       timezoneName: 'Central European Time',
