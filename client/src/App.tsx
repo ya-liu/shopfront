@@ -3,12 +3,12 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  const [data, setData] = useState(null);
+  const [message, setMessage] = useState(null);
 
   useEffect(() => {
     fetch(`/api`)
       .then((res) => res.json())
-      .then((data) => setData(data.message));
+      .then((data) => setMessage(data.message));
   }, []);
 
   return (
@@ -16,7 +16,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          {!data ? 'Loading...' : data}
+          {!message ? 'Loading...' : message}
         </p>
       </header>
     </div>

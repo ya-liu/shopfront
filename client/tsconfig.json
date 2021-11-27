@@ -19,9 +19,14 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "sourceMap": true
+    "sourceMap": true,
+    "outDir": "dist/js",
+    "rootDir": "src"
   },
   "include": [
-    "src"
+    "src/**/*"
+  ],
+  "exclude": [
+    "src/types/*.ts", "node_modules", ".vscode"
   ]
 }
