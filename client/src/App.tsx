@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import './App.css';
 import Header from './components/Header';
+import ProductList from './components/ProductList';
 
 function App() {
   type Message = string;
@@ -20,6 +21,7 @@ function App() {
       <p>
         {!message ? 'Loading...' : message}
       </p>
+      <ProductList />
       <Button variant="contained">Click me!</Button>
     </div>
   );

@@ -1,0 +1,5 @@
+GET https://api.github.com/users/ya-liu
+
+###
+
+GET http://localhost:3001/api
