@@ -9,6 +9,7 @@
     "sourceMap": true,
     "rootDir": "./",
     "baseUrl": ".",
+    "outDir": "server/dist",
     "paths": {
       "*": [
         "node_modules/*"
