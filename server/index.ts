@@ -15,7 +15,7 @@ interface LocationWithTimezone {
   utcOffset: number;
 };
 
-const getLocationsWithTimezones = (request: Request, response: Response, next: NextFunction) => {
+const getLocationsWithTimezones = (req: Request, res: Response, next: NextFunction) => {
   let locations: LocationWithTimezone[] = [
     {
       location: 'Germany',
@@ -43,7 +43,7 @@ const getLocationsWithTimezones = (request: Request, response: Response, next: N
     }
   ];
 
-  response.status(200).json(locations);
+  res.status(200).json(locations);
 };
 
 app.get('/timezones', getLocationsWithTimezones);

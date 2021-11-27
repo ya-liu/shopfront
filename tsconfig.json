@@ -1,9 +1,20 @@
 {
   "compilerOptions": {
     "module": "commonjs",
+    "esModuleInterop": true,
     "target": "es6",
-    "rootDir": "./",
+    "noImplicitAny": true,
+    "moduleResolution": "node",
     "sourceMap": true,
-    "esModuleInterop": true
-  }
+    "rootDir": "./",
+    "baseUrl": ".",
+    "paths": {
+      "*": [
+        "node_modules/*"
+      ]
+    }
+  },
+  "include": [
+    "server/**/*"
+  ]
 }
