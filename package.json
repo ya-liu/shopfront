@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server",
-    "dev": "nodemon server"
+    "start": "node server/index.ts",
+    "dev": "nodemon server/index.ts"
   },
   "author": "Ya Liu",
   "license": "ISC",
