@@ -1,4 +1,4 @@
-import { Schema, model, connect } from 'mongoose';
+import { connect, connection, model, Schema } from 'mongoose';
 
 // 1. Create an interface representing a document in MongoDB.
 interface Order {
@@ -21,13 +21,20 @@ const orderSchema = new Schema<Order>({
 // 3. Create a Model.
 const OrderModel = model<Order>('Order', orderSchema);
 
-run().catch(err => console.log(err));
+// 4. Connect to MongoDB
+connect('mongodb://localhost:27017/test');
 
-async function run(): Promise<void> {
-  // 4. Connect to MongoDB
-  await connect('mongodb://localhost:27017/test');
-  console.log('connected to mongoose')
+const db = connection;
 
+db.on('error', () => {
+  console.log('Error when connecting to MongoDB');
+})
+
+db.on('open', () => {
+  console.log('Connected to MongoDB');
+})
+
+let save = () => {
   const doc = new OrderModel({
     name: 'HP',
     email: 'hp@hp.com',
@@ -35,7 +42,8 @@ async function run(): Promise<void> {
     item: 'Ethiopia Ada',
     quantity: 2
   })
-  await doc.save();
 
-  console.log(doc.email);
+  return doc.save();
 }
+
+module.exports = {save};
