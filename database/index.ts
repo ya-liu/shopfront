@@ -34,16 +34,20 @@ db.on('open', () => {
   console.log('Connected to MongoDB');
 })
 
-let save = () => {
+let save = (order:Order) => {
   const doc = new OrderModel({
-    name: 'HP',
-    email: 'hp@hp.com',
-    address: '1 Central Road, HK, 201302',
-    item: 'Ethiopia Ada',
-    quantity: 2
+    name: order.name,
+    email: order.email,
+    address: order.address,
+    item: order.item,
+    quantity: order.quantity
   })
 
   return doc.save();
 }
 
-module.exports = {save};
+let findAll = () => {
+  return OrderModel.find({}).exec();
+}
+
+export default {save, findAll};
