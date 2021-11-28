@@ -22,7 +22,7 @@ const orderSchema = new Schema<Order>({
 const OrderModel = model<Order>('Order', orderSchema);
 
 // 4. Connect to MongoDB
-connect('mongodb://localhost:27017/test');
+connect('mongodb://localhost:27017/shopfront');
 
 const db = connection;
 
