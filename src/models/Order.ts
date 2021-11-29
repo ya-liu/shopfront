@@ -9,7 +9,6 @@ export type OrderDocument = mongoose.Document & {
   quantity: number;
 }
 
-
 // 2. Create a Schema corresponding to the document interface.
 const orderSchema = new mongoose.Schema<OrderDocument>(
   {
@@ -37,20 +36,4 @@ db.on('error', () => {
 db.on('open', () => {
   console.log('Connected to MongoDB');
 })
-
-export const save = (order: OrderDocument) => {
-  const doc = new Order({
-    name: order.name,
-    email: order.email,
-    address: order.address,
-    item: order.item,
-    quantity: order.quantity
-  })
-
-  return doc.save();
-}
-
-export const findAll = () => {
-  return Order.find({}).exec();
-}
 

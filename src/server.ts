@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import express, { Request, Response } from 'express';
-import {save, findAll, OrderDocument} from './models/Order';
+import { OrderDocument } from './models/Order';
+import * as orderController from './controllers/order';
 
 // initialize configuration
 dotenv.config();
@@ -15,15 +16,15 @@ app.get('/api', (req: Request, res: Response) => {
 });
 
 app.get('/api/orders', (req: Request, res: Response) => {
-  findAll()
-    .then((orders:OrderDocument[]) => res.json(orders))
-    .catch((err:TypeError) => console.error(err));
+  orderController.findAll()
+    .then((orders: OrderDocument[]) => res.json(orders))
+    .catch((err: TypeError) => console.error(err));
 });
 
 app.post('/api/orders', (req: Request, res: Response) => {
-  save(req.body)
+  orderController.save(req.body)
     .then(() => res.status(201).end())
-    .catch((err:TypeError) => console.error(err))
+    .catch((err: TypeError) => console.error(err))
 })
 
 app.listen(PORT, () => {
