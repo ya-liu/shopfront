@@ -31,6 +31,8 @@ app.get('/api/orders', orderController.getOrders);
 
 app.put('/api/orders/:id', orderController.updateOrder);
 
+app.delete('/api/orders/:id', orderController.deleteOrder);
+
 app.post('/api/orders', orderController.addOrder);
 
 app.listen(PORT, () => {

@@ -36,7 +36,7 @@ export const updateOrder = async (req: Request, res: Response): Promise<void> =>
     const {
       params: { id },
       body,
-    } = req
+    } = req;
     await Order.findByIdAndUpdate(id, body);
     const updatedOrder: OrderDocument = await Order.findById(id);
     res.status(200).json({
@@ -46,4 +46,17 @@ export const updateOrder = async (req: Request, res: Response): Promise<void> =>
   } catch (error) {
     console.error(error);
   };
+}
+
+export const deleteOrder = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const deletedOrder: OrderDocument | null = await Order.findByIdAndDelete(req.params.id);
+
+    res.status(200).json({
+      message: 'Order deleted',
+      deleteOrder: deletedOrder
+    })
+  } catch (error) {
+    console.error(error);
+  }
 }
