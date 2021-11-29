@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
-// 1. Create an interface / type representing a document in MongoDB.
-export type OrderDocument = mongoose.Document & {
+// 1. Create an interface representing a document in MongoDB.
+export interface OrderDocument extends mongoose.Document {
   name: string;
   email: string;
   address: string;
