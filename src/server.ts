@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 
 // Controllers (route handlers)
 import * as orderController from './controllers/order';
+import { Order } from './models/Order';
 
 // initialize configuration
 dotenv.config();
@@ -27,6 +28,8 @@ app.get('/api', (req: Request, res: Response): void => {
 });
 
 app.get('/api/orders', orderController.getOrders);
+
+app.put('/api/orders/:id', orderController.updateOrder);
 
 app.post('/api/orders', orderController.addOrder);
 

@@ -1,6 +1,15 @@
 import { Response, Request } from 'express';
 import { Order, OrderDocument } from '../models/Order';
 
+export const getOrders = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const orders: OrderDocument[] = await Order.find();
+    res.status(200).json(orders)
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export const addOrder = async (req: Request, res: Response): Promise<void> => {
   try {
     const body = req.body as Pick<OrderDocument, 'name' | 'email' | 'address' | 'item' | 'quantity'>
@@ -22,11 +31,19 @@ export const addOrder = async (req: Request, res: Response): Promise<void> => {
   }
 }
 
-export const getOrders = async (req: Request, res: Response): Promise<void> => {
+export const updateOrder = async (req: Request, res: Response): Promise<void> => {
   try {
-    const orders: OrderDocument[] = await Order.find();
-    res.status(200).json(orders)
+    const {
+      params: { id },
+      body,
+    } = req
+    await Order.findByIdAndUpdate(id, body);
+    const updatedOrder: OrderDocument = await Order.findById(id);
+    res.status(200).json({
+      message: 'Order updated',
+      updatedOrder: updatedOrder
+    });
   } catch (error) {
     console.error(error);
-  }
+  };
 }
