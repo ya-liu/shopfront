@@ -29,7 +29,7 @@ db.on('open', () => {
   console.log('Connected to MongoDB');
 })
 
-let save = (order:Order) => {
+const save = (order:Order) => {
   const doc = new OrderModel({
     name: order.name,
     email: order.email,
@@ -41,7 +41,7 @@ let save = (order:Order) => {
   return doc.save();
 }
 
-let findAll = () => {
+const findAll = () => {
   return OrderModel.find({}).exec();
 }
 

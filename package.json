@@ -2,13 +2,13 @@
   "name": "shopfront",
   "version": "1.0.0",
   "description": "",
-  "main": "server/index.js",
+  "main": "src/server.js",
   "scripts": {
     "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
     "build": "tsc",
     "prestart": "npm run build",
-    "start": "node server/index.ts",
-    "dev": "nodemon server/index.ts"
+    "start": "node dist/server.js",
+    "dev": "nodemon src/server.ts"
   },
   "author": "Ya Liu",
   "license": "ISC",
