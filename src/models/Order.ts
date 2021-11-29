@@ -11,16 +11,19 @@ export type OrderDocument = mongoose.Document & {
 
 
 // 2. Create a Schema corresponding to the document interface.
-const orderSchema = new mongoose.Schema<OrderDocument>({
-  name: { type: String, required: true },
-  email: { type: String, required: true },
-  address: { type: String, required: true },
-  item: { type: String, required: true },
-  quantity: { type: Number, required: true }
-});
+const orderSchema = new mongoose.Schema<OrderDocument>(
+  {
+    name: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    address: { type: String, required: true },
+    item: { type: String, required: true },
+    quantity: { type: Number, required: true }
+  },
+  { timestamps: true },
+);
 
 // 3. Create a Model.
-const OrderModel = mongoose.model<OrderDocument>('Order', orderSchema);
+export const Order = mongoose.model<OrderDocument>('Order', orderSchema);
 
 // 4. Connect to MongoDB
 mongoose.connect('mongodb://localhost:27017/shopfront');
@@ -35,8 +38,8 @@ db.on('open', () => {
   console.log('Connected to MongoDB');
 })
 
-export const save = (order:OrderDocument) => {
-  const doc = new OrderModel({
+export const save = (order: OrderDocument) => {
+  const doc = new Order({
     name: order.name,
     email: order.email,
     address: order.address,
@@ -48,6 +51,6 @@ export const save = (order:OrderDocument) => {
 }
 
 export const findAll = () => {
-  return OrderModel.find({}).exec();
+  return Order.find({}).exec();
 }
 
