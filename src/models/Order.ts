@@ -1,11 +1,17 @@
-import { connect, connection, model, Schema } from 'mongoose';
-import Order from '../types';
+import mongoose from 'mongoose';
 
-// 1. Create an interface representing a document in MongoDB.
-// Saved in types.ts
+// 1. Create an interface / type representing a document in MongoDB.
+export type OrderDocument = mongoose.Document & {
+  name: string;
+  email: string;
+  address: string;
+  item: string;
+  quantity: number;
+}
+
 
 // 2. Create a Schema corresponding to the document interface.
-const orderSchema = new Schema<Order>({
+const orderSchema = new mongoose.Schema<OrderDocument>({
   name: { type: String, required: true },
   email: { type: String, required: true },
   address: { type: String, required: true },
@@ -14,12 +20,12 @@ const orderSchema = new Schema<Order>({
 });
 
 // 3. Create a Model.
-const OrderModel = model<Order>('Order', orderSchema);
+const OrderModel = mongoose.model<OrderDocument>('Order', orderSchema);
 
 // 4. Connect to MongoDB
-connect('mongodb://localhost:27017/shopfront');
+mongoose.connect('mongodb://localhost:27017/shopfront');
 
-const db = connection;
+const db = mongoose.connection;
 
 db.on('error', () => {
   console.log('Error when connecting to MongoDB');
@@ -29,7 +35,7 @@ db.on('open', () => {
   console.log('Connected to MongoDB');
 })
 
-const save = (order:Order) => {
+export const save = (order:OrderDocument) => {
   const doc = new OrderModel({
     name: order.name,
     email: order.email,
@@ -41,8 +47,7 @@ const save = (order:Order) => {
   return doc.save();
 }
 
-const findAll = () => {
+export const findAll = () => {
   return OrderModel.find({}).exec();
 }
 
-export default {save, findAll};
