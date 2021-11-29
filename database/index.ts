@@ -1,13 +1,8 @@
 import { connect, connection, model, Schema } from 'mongoose';
+import Order from '../types';
 
 // 1. Create an interface representing a document in MongoDB.
-interface Order {
-  name: string;
-  email: string;
-  address: string;
-  item: string;
-  quantity: number;
-}
+// Saved in types.ts
 
 // 2. Create a Schema corresponding to the document interface.
 const orderSchema = new Schema<Order>({
