@@ -23,17 +23,3 @@ const orderSchema = new mongoose.Schema<OrderDocument>(
 
 // 3. Create a Model.
 export const Order = mongoose.model<OrderDocument>('Order', orderSchema);
-
-// 4. Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/shopfront');
-
-const db = mongoose.connection;
-
-db.on('error', () => {
-  console.log('Error when connecting to MongoDB');
-})
-
-db.on('open', () => {
-  console.log('Connected to MongoDB');
-})
-
