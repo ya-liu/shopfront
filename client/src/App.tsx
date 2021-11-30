@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Button from '@mui/material/Button';
 import './App.css';
 import Header from './components/Header';
 import ProductList from './components/ProductList';
+import Home from './routes/Home';
+import About from './routes/About';
 
 function App() {
   type Message = string;
@@ -32,33 +34,3 @@ function App() {
 }
 
 export default App;
-
-function Home() {
-  return (
-    <>
-      <main>
-        <h2>Welcome to the shop!</h2>
-        <p>You can do this, I believe in you.</p>
-      </main>
-      <nav>
-        <Link to="/about">About</Link>
-      </nav>
-    </>
-  );
-}
-
-function About() {
-  return (
-    <>
-      <main>
-        <h2>Who are we?</h2>
-        <p>
-          That feels like an existential question, don't you think?
-        </p>
-      </main>
-      <nav>
-        <Link to="/">Home</Link>
-      </nav>
-    </>
-  );
-}
