@@ -23,9 +23,7 @@ export const addOrder = async (req: Request, res: Response): Promise<void> => {
     })
     const newOrder: OrderDocument = await order.save();
     const allOrders: OrderDocument[] = await Order.find();
-    res
-      .status(201)
-      .json({ message: 'New Order In', order: newOrder, orders: allOrders })
+    res.status(201).json({ message: 'New Order In', order: newOrder, orders: allOrders })
   } catch (error) {
     console.error(error);
   }
@@ -55,7 +53,7 @@ export const deleteOrder = async (req: Request, res: Response): Promise<void> =>
     res.status(200).json({
       message: 'Order deleted',
       deleteOrder: deletedOrder
-    })
+    });
   } catch (error) {
     console.error(error);
   }
