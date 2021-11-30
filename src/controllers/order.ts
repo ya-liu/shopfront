@@ -36,7 +36,7 @@ export const updateOrder = async (req: Request, res: Response): Promise<void> =>
       body,
     } = req;
     await Order.findByIdAndUpdate(id, body);
-    const updatedOrder: OrderDocument = await Order.findById(id);
+    const updatedOrder: OrderDocument | null = await Order.findById(id);
     res.status(200).json({
       message: 'Order updated',
       updatedOrder: updatedOrder
