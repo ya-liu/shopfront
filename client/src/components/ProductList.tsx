@@ -5,7 +5,7 @@ type ProductListProps = {
   products: Product[];
 }
 
-const ProductList = ({ products }: ProductListProps) => (
+const ProductList = ({ products }: ProductListProps): JSX.Element => (
   <div>
     This is a list of products
     <ul>

@@ -41,7 +41,7 @@ const App = () => {
         {!message ? 'Loading...' : message}
       </p>
       <ProductList products={dummyData} />
-      <form onSubmit={(e) => onSubmit(e)}>
+      <form onSubmit={onSubmit}>
         <input type="text" id="product" onChange={onChange} />
         <input type="submit" value="Search" />
       </form>

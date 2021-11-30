@@ -4,7 +4,7 @@ type ProductEntryProps = {
   product: Product;
 }
 
-const ProductEntry= ({ product }: ProductEntryProps) => {
+const ProductEntry= ({ product }: ProductEntryProps): JSX.Element => {
   return (
     <li className="card">
       {product.name}

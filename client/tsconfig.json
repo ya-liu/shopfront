@@ -22,12 +22,17 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "sourceMap": true,
-    "outDir": "dist",
+    "outDir": "build/dist",
   },
   "include": [
     "src/**/*"
   ],
   "exclude": [
-    "src/types/*.ts", "node_modules", ".vscode"
+    "src/types/*.ts",
+    "node_modules",
+    ".vscode",
+    "build",
+    "scripts",
+    "src/setupTests.ts"
   ]
 }
