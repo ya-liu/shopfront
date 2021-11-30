@@ -8,15 +8,27 @@ import Home from './routes/Home';
 import About from './routes/About';
 import { dummyData } from './dummyData';
 
+type Message = string;
+type Product = string;
+
 const App = () => {
-  type Message = string;
   const [message, setMessage] = useState<Message | undefined>(undefined);
+  const [product, setProduct] = useState<Product | undefined>(undefined);
 
   useEffect(() => {
     fetch(`/api`)
       .then((res) => res.json())
       .then((data) => setMessage(data.message));
   }, []);
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setProduct(e.target.value);
+  }
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(product);
+  }
 
   return (
     <div className="App">
@@ -29,6 +41,10 @@ const App = () => {
         {!message ? 'Loading...' : message}
       </p>
       <ProductList products={dummyData} />
+      <form onSubmit={(e) => onSubmit(e)}>
+        <input type="text" id="product" onChange={onChange} />
+        <input type="submit" value="Search" />
+      </form>
       <Button variant="contained">Add to Cart</Button>
     </div>
   );
