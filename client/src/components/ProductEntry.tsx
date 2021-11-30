@@ -1,7 +1,7 @@
-import { product } from '../interfaces';
+import { Product } from '../interfaces';
 
-interface ProductEntryProps {
-  product: product;
+type ProductEntryProps = {
+  product: Product;
 }
 
 const ProductEntry= ({ product }: ProductEntryProps) => {
