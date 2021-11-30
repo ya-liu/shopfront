@@ -1,8 +1,6 @@
 const Header = () => (
   <header>
-    <h1>
-      Welcome to our shop!
-    </h1>
+    I am the header, I'm at the very top.
   </header>
 )
 
