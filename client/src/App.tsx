@@ -9,7 +9,6 @@ function App() {
   const [message, setMessage] = useState<Message | undefined>(undefined);
 
   useEffect(() => {
-    // console.log(process.env.REACT_APP_NOT_SECRET_CODE);
     fetch(`/api`)
       .then((res) => res.json())
       .then((data) => setMessage(data.message));
