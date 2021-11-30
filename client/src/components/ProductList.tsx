@@ -1,10 +1,13 @@
-const ProductList = () => (
+import { product } from '../dummyData';
+import ProductEntry from './ProductEntry';
+
+const ProductList = ({ products }) => (
   <div>
     This is a list of products
     <ul>
-      <li>Matcha 30g</li>
-      <li>Matcha 50g</li>
-      <li>Matcha 100g</li>
+      {products.map((product: product) => (
+        <ProductEntry product={product} key={product.id} />
+      ))}
     </ul>
   </div>
 )
