@@ -1,8 +1,14 @@
-const ProductEntry= ({ product }) => {
+import { product } from '../interfaces';
+
+interface ProductEntryProps {
+  product: product;
+}
+
+const ProductEntry= ({ product }: ProductEntryProps) => {
   return (
-    <div className="card">
+    <li className="card">
       {product.name}
-    </div>
+    </li>
   )
 }
 

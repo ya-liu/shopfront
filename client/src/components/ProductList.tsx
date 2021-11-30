@@ -1,7 +1,11 @@
-import { product } from '../dummyData';
+import { product } from '../interfaces';
 import ProductEntry from './ProductEntry';
 
-const ProductList = ({ products }) => (
+interface ProductListProps {
+  products: product[];
+}
+
+const ProductList = ({ products }: ProductListProps) => (
   <div>
     This is a list of products
     <ul>
