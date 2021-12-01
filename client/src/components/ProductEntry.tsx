@@ -16,12 +16,12 @@ const ProductEntry = ({ product, updateCart }: ProductEntryProps): JSX.Element =
   }
 
   return (
-    <>
+    <div>
       <Product product={product} />
       {body}
       <br />
       <Button variant="contained" onClick={() => updateCart(product)}>Add to Cart</Button>
-    </>
+    </div>
   );
 };
 

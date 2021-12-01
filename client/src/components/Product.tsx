@@ -6,13 +6,13 @@ type ProductProps = {
 
 const Product = ({ product }: ProductProps): JSX.Element => {
   return (
-    <li className="card">
+    <div className="card">
       {product.image && <img src={product.image.src} alt="product" style={{ width: "300px", height: "200px" }} />}
       <br />
       {product.title}
       <br />
       Price: ${product.variants[0].price}
-    </li>
+    </div>
   );
 };
 

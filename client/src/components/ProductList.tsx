@@ -17,11 +17,9 @@ const ProductList = ({ products, query, updateCart }: ProductListProps): JSX.Ele
 
   return (
     <div className="display-products">
-      <ul>
-        {displayList.map((product: ShopifyProduct) => (
-          <ProductEntry product={product} key={product.id} updateCart={updateCart} />
-        ))}
-      </ul>
+      {displayList.map((product: ShopifyProduct) => (
+        <ProductEntry product={product} key={product.id} updateCart={updateCart} />
+      ))}
     </div>
   )
 }
