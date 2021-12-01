@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Link } from "react-router-dom";
-import Button from '@mui/material/Button';
 import GetProductsController from '../controllers/GetProductsController';
 
 type Product = string;
@@ -30,7 +29,6 @@ export default function Home() {
           <input type="submit" value="Search" />
         </form>
         <GetProductsController />
-        <Button variant="contained">Add to Cart</Button>
       </main>
     </>
   );
