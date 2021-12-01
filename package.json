@@ -13,7 +13,7 @@
   "author": "Ya Liu",
   "license": "ISC",
   "dependencies": {
-    "@shopify/shopify-api": "^2.0.0",
+    "axios": "^0.24.0",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "mongoose": "^6.0.13"
