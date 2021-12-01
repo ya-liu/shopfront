@@ -1,7 +1,7 @@
-import { Product } from '../interfaces';
+import { dummyProduct } from '../interfaces';
 
 type ProductEntryProps = {
-  product: Product;
+  product: dummyProduct;
 }
 
 const ProductEntry= ({ product }: ProductEntryProps): JSX.Element => {

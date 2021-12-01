@@ -1,15 +1,15 @@
-import { Product } from '../interfaces';
+import { dummyProduct } from '../interfaces';
 import ProductEntry from './ProductEntry';
 
 type ProductListProps = {
-  products: Product[];
+  products: dummyProduct[];
 }
 
 const ProductList = ({ products }: ProductListProps): JSX.Element => (
   <div>
     This is a list of products
     <ul>
-      {products.map((product: Product) => (
+      {products.map((product: dummyProduct) => (
         <ProductEntry product={product} key={product.id} />
       ))}
     </ul>

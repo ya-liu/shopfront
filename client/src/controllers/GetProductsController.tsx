@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-import { Product } from '../interfaces';
+import { dummyProduct } from '../interfaces';
 import ProductList from '../components/ProductList';
 
 const GetProductsController = () => {
-  const [products, setProducts] = useState<Product[] | undefined>(undefined);
+  const [products, setProducts] = useState<dummyProduct[] | undefined>(undefined);
 
   useEffect(() => {
-    fetch(`api`)
+    fetch(`/api`)
       .then((res) => res.json())
       .then((products) => setProducts(products))
   }, []);
