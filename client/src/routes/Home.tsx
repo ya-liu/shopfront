@@ -1,10 +1,17 @@
 import { useState } from 'react';
-import GetProductsController from '../controllers/GetProductsController';
+import { ShopifyProduct } from '../interfaces';
+import ProductList from '../components/ProductList';
+
+type ProductListProps = {
+  products: ShopifyProduct[];
+  // query: string;
+}
 
 type ProductQuery = string;
 
-export default function Home() {
+export default function Home({ products }: ProductListProps) {
   const [productQuery, setProductQuery] = useState<ProductQuery>('');
+  // const [finalQuery, setFinalQuery] = useState<ProductQuery>('');
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setProductQuery(e.target.value);
@@ -13,6 +20,7 @@ export default function Home() {
   const onSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     console.log(productQuery);
+    // setFinalQuery(productQuery);
   }
 
   return (
@@ -20,10 +28,15 @@ export default function Home() {
       <main>
         <h2>Welcome to the shop!</h2>
         <form onSubmit={onSubmit}>
-          <input type="text" id="product" onChange={onChange} />
-          <input type="submit" value="Search" />
+          <input
+            type="text"
+            id="product"
+            onChange={onChange}
+            placeholder="search for a product"
+          />
+          <input type="submit" value="Go" />
         </form>
-        <GetProductsController query={productQuery} />
+        <ProductList products={products} />
       </main>
     </>
   );

@@ -3,16 +3,17 @@ import ProductEntry from './ProductEntry';
 
 type ProductListProps = {
   products: ShopifyProduct[];
-  query: string;
+  // query: string;
 }
 
-const ProductList = ({ products, query }: ProductListProps): JSX.Element => {
+const ProductList = ({ products }: ProductListProps): JSX.Element => {
   let displayList;
-  if (!query) {
-    displayList = products;
-  } else {
-    displayList = products.filter((product) => product.title.toLowerCase().includes(query));
-  }
+  displayList = products;
+  // if (!query) {
+  //   displayList = products;
+  // } else {
+  //   displayList = products.filter((product) => product.title.toLowerCase().includes(query));
+  // }
 
   return (
     <div className="display-products">
