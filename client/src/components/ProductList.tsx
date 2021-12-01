@@ -15,8 +15,7 @@ const ProductList = ({ products, query }: ProductListProps): JSX.Element => {
   }
 
   return (
-    <div>
-      Products from store: {products[0].vendor}
+    <div className="display-products">
       <ul>
         {displayList.map((product: ShopifyProduct) => (
           <ProductEntry product={product} key={product.id} />
@@ -25,6 +24,5 @@ const ProductList = ({ products, query }: ProductListProps): JSX.Element => {
     </div>
   )
 }
-
 
 export default ProductList;
