@@ -10,7 +10,7 @@ export default function Catalog({ products }: ProductListProps) {
     <>
       <main>
         <h2>All products at espresso all day:</h2>
-        <ProductList products={products} />
+        <ProductList products={products} query='' />
       </main>
     </>
   );

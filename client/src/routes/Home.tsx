@@ -4,14 +4,13 @@ import ProductList from '../components/ProductList';
 
 type ProductListProps = {
   products: ShopifyProduct[];
-  // query: string;
 }
 
 type ProductQuery = string;
 
 export default function Home({ products }: ProductListProps) {
   const [productQuery, setProductQuery] = useState<ProductQuery>('');
-  // const [finalQuery, setFinalQuery] = useState<ProductQuery>('');
+  const [finalQuery, setFinalQuery] = useState<ProductQuery>('');
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setProductQuery(e.target.value);
@@ -19,8 +18,7 @@ export default function Home({ products }: ProductListProps) {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    console.log(productQuery);
-    // setFinalQuery(productQuery);
+    setFinalQuery(productQuery);
   }
 
   return (
@@ -36,7 +34,7 @@ export default function Home({ products }: ProductListProps) {
           />
           <input type="submit" value="Go" />
         </form>
-        <ProductList products={products} />
+        <ProductList products={products} query={finalQuery} />
       </main>
     </>
   );
