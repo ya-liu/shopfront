@@ -2,7 +2,11 @@ import { useState, useEffect } from 'react';
 import ProductList from '../components/ProductList';
 import { ShopifyProduct } from '../interfaces';
 
-const GetProductsController = () => {
+type ProductControllerProps = {
+  query: string;
+}
+
+const GetProductsController = ({ query }: ProductControllerProps) => {
   const [products, setProducts] = useState<ShopifyProduct[] | undefined>(undefined);
 
   useEffect(() => {
@@ -13,7 +17,7 @@ const GetProductsController = () => {
 
   return (
     <>
-      {!products ? 'Loading...' : (<ProductList products={products} />)}
+      {!products ? 'Loading...' : (<ProductList products={products} query={query} />)}
     </>
   );
 }
