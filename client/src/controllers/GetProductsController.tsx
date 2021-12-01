@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-import { dummyProduct } from '../interfaces';
 import ProductList from '../components/ProductList';
+import { ShopifyProduct } from '../interfaces';
 
 const GetProductsController = () => {
-  const [products, setProducts] = useState<dummyProduct[] | undefined>(undefined);
+  const [products, setProducts] = useState<ShopifyProduct[] | undefined>(undefined);
 
   useEffect(() => {
-    fetch(`/api`)
+    fetch(`/api/products`)
       .then((res) => res.json())
       .then((products) => setProducts(products))
   }, []);

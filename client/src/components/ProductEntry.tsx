@@ -1,13 +1,15 @@
-import { dummyProduct } from '../interfaces';
+import { ShopifyProduct } from '../interfaces';
 
 type ProductEntryProps = {
-  product: dummyProduct;
+  product: ShopifyProduct;
 }
 
 const ProductEntry= ({ product }: ProductEntryProps): JSX.Element => {
   return (
     <li className="card">
-      {product.name}
+      {product.title}
+      <br />
+      {product.body_html}
     </li>
   )
 }

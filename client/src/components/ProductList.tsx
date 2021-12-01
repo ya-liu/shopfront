@@ -1,15 +1,15 @@
-import { dummyProduct } from '../interfaces';
+import { ShopifyProduct } from '../interfaces';
 import ProductEntry from './ProductEntry';
 
 type ProductListProps = {
-  products: dummyProduct[];
+  products: ShopifyProduct[];
 }
 
 const ProductList = ({ products }: ProductListProps): JSX.Element => (
   <div>
-    This is a list of products
+    Products from store: {products[0].vendor}
     <ul>
-      {products.map((product: dummyProduct) => (
+      {products.map((product: ShopifyProduct) => (
         <ProductEntry product={product} key={product.id} />
       ))}
     </ul>
