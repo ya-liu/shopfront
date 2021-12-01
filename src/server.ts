@@ -5,6 +5,7 @@ import { dummyData } from '../client/src/dummyData';
 
 // Controllers (route handlers)
 import * as orderController from './controllers/order';
+import * as productController from './controllers/shopify'
 
 // initialize configuration
 dotenv.config();
@@ -27,6 +28,10 @@ app.get('/api', (req: Request, res: Response): void => {
   res.json(dummyData);
 });
 
+// Products route
+app.get('api/products', productController.getProducts);
+
+// Order related routes
 app.get('/api/orders', orderController.getOrders);
 
 app.post('/api/orders', orderController.addOrder);
