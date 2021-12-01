@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import express, { Request, Response } from 'express';
 import mongoose from 'mongoose';
+import { dummyData } from '../client/src/dummyData';
 
 // Controllers (route handlers)
 import * as orderController from './controllers/order';
@@ -23,7 +24,7 @@ mongoose.connect('mongodb://localhost:27017/shopfront')
 // Primary app routes
 
 app.get('/api', (req: Request, res: Response): void => {
-  res.json({ message: 'Hello from the server!' });
+  res.json(dummyData);
 });
 
 app.get('/api/orders', orderController.getOrders);
