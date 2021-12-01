@@ -39,7 +39,7 @@ export const updateOrder = async (req: Request, res: Response): Promise<void> =>
     const updatedOrder: OrderDocument | null = await Order.findById(id);
     res.status(200).json({
       message: 'Order updated',
-      updatedOrder: updatedOrder
+      updatedOrder
     });
   } catch (error) {
     console.error(error);
