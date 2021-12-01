@@ -1,21 +1,18 @@
-import { useState, useEffect } from "react";
-import { dummyProduct } from '../interfaces';
-// import ProductEntry from "../components/ProductEntry";
-import { dummyData } from "../dummyData";
+import { ShopifyProduct } from '../interfaces';
+import Product from '../components/Product';
 
-export default function Cart() {
-  const [cart, setCart] = useState<dummyProduct[]>([]);
-  useEffect(() => {
-    setCart(dummyData);
-  }, []);
+type CartProps = {
+  cart: ShopifyProduct[]
+}
 
+export default function Cart({ cart }: CartProps) {
   return (
     <>
       <main>
         <h2>Cart</h2>
         <div className="cart-list">
           <ul>
-            {cart.map((product: dummyProduct) => (<li>{product.name}</li>))}
+            {cart.map((product: ShopifyProduct) => (<Product product={product} key={product.id} />))}
           </ul>
         </div>
       </main>

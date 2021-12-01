@@ -2,13 +2,14 @@ import { useState } from 'react';
 import { ShopifyProduct } from '../interfaces';
 import ProductList from '../components/ProductList';
 
-type ProductListProps = {
+type HomeProps = {
   products: ShopifyProduct[];
+  updateCart: (product: ShopifyProduct) => void;
 }
 
 type ProductQuery = string;
 
-export default function Home({ products }: ProductListProps) {
+export default function Home({ products, updateCart }: HomeProps) {
   const [productQuery, setProductQuery] = useState<ProductQuery>('');
   const [finalQuery, setFinalQuery] = useState<ProductQuery>('');
 
@@ -34,7 +35,7 @@ export default function Home({ products }: ProductListProps) {
           />
           <input type="submit" value="Go" />
         </form>
-        <ProductList products={products} query={finalQuery} />
+        <ProductList products={products} query={finalQuery} updateCart={updateCart} />
       </main>
     </>
   );
