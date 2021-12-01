@@ -1,7 +1,16 @@
+import { Link } from "react-router-dom";
+
 const Header = () => (
-  <header className="App-header">
-    I am the header, I'm at the very top.
-  </header>
+  <>
+    <header className="App-header">
+      espresso all day
+    </header>
+    <nav>
+      <Link to="/">Home</Link>
+      <Link to="/about">About Us</Link>
+      <Link to="/cart">Cart</Link>
+    </nav>
+  </>
 )
 
 export default Header;
