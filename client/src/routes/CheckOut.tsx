@@ -8,36 +8,22 @@ import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
-import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AddressForm from '../components/AddressForm';
 import PaymentForm from '../components/PaymentForm';
 import Review from '../components/Review';
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://espresso-all-day.myshopify.com/">
-        espresso all day
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+const steps = ['Shipping information', 'Payment', 'Review your order'];
 
-const steps = ['Shipping address', 'Payment details', 'Review your order'];
-
-function getStepContent(step: number, cart: CartInfo[]) {
+function getStepContent(step: number, cart: CartInfo[], total: number) {
   switch (step) {
     case 0:
       return <AddressForm />;
     case 1:
       return <PaymentForm />;
     case 2:
-      return <Review cart={cart} />;
+      return <Review cart={cart} total={total} />;
     default:
       throw new Error('Unknown step');
   }
@@ -47,9 +33,10 @@ const theme = createTheme();
 
 type CheckoutProps = {
   cart: CartInfo[];
+  total: number;
 }
 
-export default function Checkout({ cart }: CheckoutProps) {
+export default function Checkout({ cart, total }: CheckoutProps) {
   const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = () => {
@@ -89,7 +76,7 @@ export default function Checkout({ cart }: CheckoutProps) {
               </>
             ) : (
               <>
-                {getStepContent(activeStep, cart)}
+                {getStepContent(activeStep, cart, total)}
                 <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                   {activeStep !== 0 && (
                     <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
@@ -108,7 +95,6 @@ export default function Checkout({ cart }: CheckoutProps) {
             )}
           </>
         </Paper>
-        <Copyright />
       </Container>
     </ThemeProvider>
   );

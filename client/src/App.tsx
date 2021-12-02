@@ -77,7 +77,7 @@ const App = ({ products }: AppProps) => {
         <Route path="catalog" element={<Catalog products={products} addToCart={addToCart} />} />
         <Route path="about" element={<About />} />
         <Route path="cart" element={<Cart cart={cart} updateCart={updateCart} removeItem={removeItem} totalAmount={totalAmount} updateTotal={updateTotal} />} />
-        <Route path="checkout" element={<Checkout cart={cart} />} />
+        <Route path="checkout" element={<Checkout cart={cart} total={totalAmount} />} />
         <Route path="*" element={<NoMatch />} />
       </Routes>
     </div>
