@@ -74,3 +74,8 @@ export interface Image {
   variant_id: number[];
   admin_graphql_api_id: string;
 }
+
+export interface CartInfo {
+  item: ShopifyProduct;
+  quantity: number;
+}

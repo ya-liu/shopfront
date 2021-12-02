@@ -3,15 +3,15 @@ import ProductList from '../components/ProductList';
 
 type ProductListProps = {
   products: ShopifyProduct[];
-  updateCart: (product: ShopifyProduct) => void;
+  addToCart: (product: ShopifyProduct, quantity: number) => void;
 }
 
-export default function Catalog({ products, updateCart }: ProductListProps) {
+export default function Catalog({ products, addToCart }: ProductListProps) {
   return (
     <>
       <main>
         <h2>All products at espresso all day:</h2>
-        <ProductList products={products} query='' updateCart={updateCart}/>
+        <ProductList products={products} query='' addToCart={addToCart}/>
       </main>
     </>
   );

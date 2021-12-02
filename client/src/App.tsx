@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import './App.css';
-import { ShopifyProduct } from "./interfaces";
+import { ShopifyProduct, CartInfo } from "./interfaces";
 import Home from "./routes/Home";
 import Header from './components/Header';
 import Catalog from "./routes/Catalog";
@@ -14,14 +14,14 @@ type AppProps = {
 }
 
 const App = ({ products }: AppProps) => {
-  const [cart, setCart] = useState<ShopifyProduct[]>([]);
+  const [cart, setCart] = useState<CartInfo[]>([]);
   useEffect(() => {
     setCart(cart);
   }, [cart]);
 
-  const updateCart = (product: ShopifyProduct): void => {
+  const addToCart = (product: ShopifyProduct, quantity: number): void => {
     let copy = cart;
-    copy.push(product);
+    copy.push({item: product, quantity: 1})
     setCart(copy);
   }
 
@@ -29,8 +29,8 @@ const App = ({ products }: AppProps) => {
     <div className="App">
       <Header />
       <Routes>
-        <Route index element={<Home products={products} updateCart={updateCart} />} />
-        <Route path="catalog" element={<Catalog products={products} updateCart={updateCart} />} />
+        <Route index element={<Home products={products} addToCart={addToCart} />} />
+        <Route path="catalog" element={<Catalog products={products} addToCart={addToCart} />} />
         <Route path="about" element={<About />} />
         <Route path="cart" element={<Cart cart={cart} />} />
         <Route path="*" element={<NoMatch />} />

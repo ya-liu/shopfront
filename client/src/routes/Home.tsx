@@ -4,12 +4,12 @@ import ProductList from '../components/ProductList';
 
 type HomeProps = {
   products: ShopifyProduct[];
-  updateCart: (product: ShopifyProduct) => void;
+  addToCart: (product: ShopifyProduct, quantity: number) => void;
 }
 
 type ProductQuery = string;
 
-export default function Home({ products, updateCart }: HomeProps) {
+export default function Home({ products, addToCart }: HomeProps) {
   const [productQuery, setProductQuery] = useState<ProductQuery>('');
   const [finalQuery, setFinalQuery] = useState<ProductQuery>('');
 
@@ -35,7 +35,7 @@ export default function Home({ products, updateCart }: HomeProps) {
           />
           <input type="submit" value="Go" />
         </form>
-        <ProductList products={products} query={finalQuery} updateCart={updateCart} />
+        <ProductList products={products} query={finalQuery} addToCart={addToCart} />
       </main>
     </>
   );

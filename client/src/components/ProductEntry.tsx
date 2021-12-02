@@ -4,10 +4,10 @@ import Button from '@mui/material/Button';
 
 type ProductEntryProps = {
   product: ShopifyProduct;
-  updateCart: (product: ShopifyProduct) => void;
+  addToCart: (product: ShopifyProduct, quantity: number) => void;
 }
 
-const ProductEntry = ({ product, updateCart }: ProductEntryProps): JSX.Element => {
+const ProductEntry = ({ product, addToCart }: ProductEntryProps): JSX.Element => {
   let body;
   if (product.body_html.startsWith('<')) {
     body = product.body_html.replace(/(<([^>]+)>)/ig, '');
@@ -20,7 +20,7 @@ const ProductEntry = ({ product, updateCart }: ProductEntryProps): JSX.Element =
       <Product product={product} />
       {body}
       <br />
-      <Button variant="contained" onClick={() => updateCart(product)}>Add to Cart</Button>
+      <Button variant="contained" onClick={() => addToCart(product, 1)}>Add to Cart</Button>
     </div>
   );
 };

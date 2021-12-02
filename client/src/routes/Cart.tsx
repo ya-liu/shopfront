@@ -1,8 +1,8 @@
-import { ShopifyProduct } from '../interfaces';
+import { CartInfo } from '../interfaces';
 import CartProduct from '../components/CartProduct';
 
 type CartProps = {
-  cart: ShopifyProduct[]
+  cart: CartInfo[]
 }
 
 export default function Cart({ cart }: CartProps) {
@@ -11,8 +11,8 @@ export default function Cart({ cart }: CartProps) {
       <main>
         <h2>Cart</h2>
         <div className="cart-list">
-          {cart.map((product: ShopifyProduct) =>
-            (<CartProduct product={product} key={product.id} />)
+          {cart.map((entry: CartInfo) =>
+            (<CartProduct product={entry.item} key={entry.item.id} quantity={entry.quantity} />)
           )}
         </div>
       </main>

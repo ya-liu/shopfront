@@ -4,10 +4,10 @@ import ProductEntry from './ProductEntry';
 type ProductListProps = {
   products: ShopifyProduct[];
   query: string;
-  updateCart: (product: ShopifyProduct) => void;
+  addToCart: (product: ShopifyProduct, quantity: number) => void;
 }
 
-const ProductList = ({ products, query, updateCart }: ProductListProps): JSX.Element => {
+const ProductList = ({ products, query, addToCart }: ProductListProps): JSX.Element => {
   let displayList;
   if (!query) {
     displayList = products;
@@ -18,7 +18,7 @@ const ProductList = ({ products, query, updateCart }: ProductListProps): JSX.Ele
   return (
     <div className="display-products">
       {displayList.map((product: ShopifyProduct) => (
-        <ProductEntry product={product} key={product.id} updateCart={updateCart} />
+        <ProductEntry product={product} key={product.id} addToCart={addToCart} />
       ))}
     </div>
   )
