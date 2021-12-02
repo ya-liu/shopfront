@@ -1,12 +1,12 @@
 import { ShopifyProduct } from "../interfaces";
 import ProductList from '../components/ProductList';
 
-type ProductListProps = {
+type CatalogProps = {
   products: ShopifyProduct[];
   addToCart: (product: ShopifyProduct) => void;
 }
 
-export default function Catalog({ products, addToCart }: ProductListProps) {
+export default function Catalog({ products, addToCart }: CatalogProps) {
   return (
     <>
       <main>

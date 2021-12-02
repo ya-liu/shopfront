@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import { ShopifyProduct, CartInfo } from '../interfaces';
 import CartProduct from '../components/CartProduct';
@@ -15,7 +16,7 @@ const Cart = ({ cart, updateCart, removeItem, totalAmount, updateTotal }: CartPr
 
   useEffect(() => {
     updateTotal();
-  }, [cart, totalAmount, updateTotal]);
+  }, [cart, updateTotal]);
 
   return (
     <>
@@ -32,10 +33,10 @@ const Cart = ({ cart, updateCart, removeItem, totalAmount, updateTotal }: CartPr
           />)
           )}
         </div>
-        <div>
+        <div className="total-amount">
           Total Amount: ${totalAmount}
         </div>
-        <Button>Check Out</Button>
+        <Link to="/checkout"><Button>Check Out</Button></Link>
       </main>
     </>
   )
