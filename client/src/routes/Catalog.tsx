@@ -3,7 +3,7 @@ import ProductList from '../components/ProductList';
 
 type ProductListProps = {
   products: ShopifyProduct[];
-  addToCart: (product: ShopifyProduct, quantity: number) => void;
+  addToCart: (product: ShopifyProduct) => void;
 }
 
 export default function Catalog({ products, addToCart }: ProductListProps) {

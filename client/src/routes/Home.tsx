@@ -4,7 +4,7 @@ import ProductList from '../components/ProductList';
 
 type HomeProps = {
   products: ShopifyProduct[];
-  addToCart: (product: ShopifyProduct, quantity: number) => void;
+  addToCart: (product: ShopifyProduct) => void;
 }
 
 type ProductQuery = string;

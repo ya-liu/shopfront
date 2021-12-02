@@ -16,16 +16,17 @@ type AppProps = {
 const App = ({ products }: AppProps) => {
   const [cart, setCart] = useState<CartInfo[]>([]);
 
-  const addToCart = (product: ShopifyProduct, quantity: number): void => {
+  const addToCart = (product: ShopifyProduct): void => {
+    const inventory = product.variants[0].inventory_quantity;
     let copy = cart;
     let found = copy.findIndex(entry => entry.item.id === product.id);
     if (found < 0) {
       copy.push({item: product, quantity: 1})
     } else {
-      if (quantity < product.variants[0].inventory_quantity) {
+      if (copy[found].quantity < inventory) {
         copy[found].quantity++;
       } else {
-        copy[found].quantity = product.variants[0].inventory_quantity;
+        copy[found].quantity = inventory;
       }
     }
     setCart(copy);

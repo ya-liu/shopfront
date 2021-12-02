@@ -4,7 +4,7 @@ import ProductEntry from './ProductEntry';
 type ProductListProps = {
   products: ShopifyProduct[];
   query: string;
-  addToCart: (product: ShopifyProduct, quantity: number) => void;
+  addToCart: (product: ShopifyProduct) => void;
 }
 
 const ProductList = ({ products, query, addToCart }: ProductListProps): JSX.Element => {

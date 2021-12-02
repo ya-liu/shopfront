@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 
 type ProductEntryProps = {
   product: ShopifyProduct;
-  addToCart: (product: ShopifyProduct, quantity: number) => void;
+  addToCart: (product: ShopifyProduct) => void;
 }
 
 const ProductEntry = ({ product, addToCart }: ProductEntryProps): JSX.Element => {
@@ -20,7 +20,7 @@ const ProductEntry = ({ product, addToCart }: ProductEntryProps): JSX.Element =>
       <Product product={product} />
       {body}
       <br />
-      <Button variant="contained" onClick={() => addToCart(product, 1)}>Add to Cart</Button>
+      <Button variant="contained" onClick={() => addToCart(product)}>Add to Cart</Button>
     </div>
   );
 };
