@@ -1,9 +1,8 @@
-import {useState, Fragment} from 'react';
+import { useState } from 'react';
+import { CartInfo } from '../interfaces';
 import CssBaseline from '@mui/material/CssBaseline';
-import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import Toolbar from '@mui/material/Toolbar';
 import Paper from '@mui/material/Paper';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
@@ -20,8 +19,8 @@ function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      <Link color="inherit" href="https://espresso-all-day.myshopify.com/">
+        espresso all day
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -31,14 +30,14 @@ function Copyright() {
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
-function getStepContent(step: number) {
+function getStepContent(step: number, cart: CartInfo[]) {
   switch (step) {
     case 0:
       return <AddressForm />;
     case 1:
       return <PaymentForm />;
     case 2:
-      return <Review />;
+      return <Review cart={cart} />;
     default:
       throw new Error('Unknown step');
   }
@@ -46,7 +45,11 @@ function getStepContent(step: number) {
 
 const theme = createTheme();
 
-export default function Checkout() {
+type CheckoutProps = {
+  cart: CartInfo[];
+}
+
+export default function Checkout({ cart }: CheckoutProps) {
   const [activeStep, setActiveStep] = useState(0);
 
   const handleNext = () => {
@@ -60,21 +63,6 @@ export default function Checkout() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <AppBar
-        position="absolute"
-        color="default"
-        elevation={0}
-        sx={{
-          position: 'relative',
-          borderBottom: (t) => `1px solid ${t.palette.divider}`,
-        }}
-      >
-        <Toolbar>
-          <Typography variant="h6" color="inherit" noWrap>
-            Company name
-          </Typography>
-        </Toolbar>
-      </AppBar>
       <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
         <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
           <Typography component="h1" variant="h4" align="center">
@@ -87,9 +75,9 @@ export default function Checkout() {
               </Step>
             ))}
           </Stepper>
-          <Fragment>
+          <>
             {activeStep === steps.length ? (
-              <Fragment>
+              <>
                 <Typography variant="h5" gutterBottom>
                   Thank you for your order.
                 </Typography>
@@ -98,10 +86,10 @@ export default function Checkout() {
                   confirmation, and will send you an update when your order has
                   shipped.
                 </Typography>
-              </Fragment>
+              </>
             ) : (
-              <Fragment>
-                {getStepContent(activeStep)}
+              <>
+                {getStepContent(activeStep, cart)}
                 <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                   {activeStep !== 0 && (
                     <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
@@ -116,9 +104,9 @@ export default function Checkout() {
                     {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
                   </Button>
                 </Box>
-              </Fragment>
+              </>
             )}
-          </Fragment>
+          </>
         </Paper>
         <Copyright />
       </Container>
