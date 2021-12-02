@@ -56,10 +56,10 @@ const App = ({ products }: AppProps) => {
   }
 
   const updateCart = (product: ShopifyProduct, quantity: number): void => {
-    // let copy = cart;
+    let copy = cart;
     let found = findInCart(product);
-    cart[found].quantity = quantity;
-    setCart(cart);
+    copy[found].quantity = quantity;
+    setCart(copy);
   }
 
   const removeItem = (product: ShopifyProduct): void => {

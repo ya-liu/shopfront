@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import Button from '@mui/material/Button';
 import { ShopifyProduct, CartInfo } from '../interfaces';
 import CartProduct from '../components/CartProduct';
 
@@ -35,6 +36,7 @@ const Cart = ({ cart, updateCart, removeItem, totalAmount, updateTotal }: CartPr
         <div>
           Total Amount: ${totalAmount}
         </div>
+        <Button>Check Out</Button>
       </main>
     </>
   )
