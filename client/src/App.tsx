@@ -8,7 +8,7 @@ import Catalog from "./routes/Catalog";
 import About from './routes/About';
 import NoMatch from "./routes/NoMatch";
 import Cart from './routes/Cart';
-import Checkout from './routes/CheckOut';
+import Checkout from './routes/Checkout';
 
 type AppProps = {
   products: ShopifyProduct[];
@@ -77,7 +77,7 @@ const App = ({ products }: AppProps) => {
         <Route path="catalog" element={<Catalog products={products} addToCart={addToCart} />} />
         <Route path="about" element={<About />} />
         <Route path="cart" element={<Cart cart={cart} updateCart={updateCart} removeItem={removeItem} totalAmount={totalAmount} updateTotal={updateTotal} />} />
-        <Route path="checkout" element={<Checkout cart={cart} />} />
+        <Route path="checkout" element={<Checkout />} />
         <Route path="*" element={<NoMatch />} />
       </Routes>
     </div>
