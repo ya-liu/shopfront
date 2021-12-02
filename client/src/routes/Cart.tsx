@@ -1,18 +1,24 @@
-import { CartInfo } from '../interfaces';
+import { ShopifyProduct, CartInfo } from '../interfaces';
 import CartProduct from '../components/CartProduct';
 
 type CartProps = {
-  cart: CartInfo[]
+  cart: CartInfo[];
+  updateCart: (product: ShopifyProduct, quantity: number) => void;
 }
 
-export default function Cart({ cart }: CartProps) {
+const Cart = ({ cart, updateCart }: CartProps) => {
   return (
     <>
       <main>
         <h2>Cart</h2>
         <div className="cart-list">
           {cart.map((entry: CartInfo) =>
-            (<CartProduct product={entry.item} key={entry.item.id} quantity={entry.quantity} />)
+          (<CartProduct
+            product={entry.item}
+            key={entry.item.id}
+            initialQuantity={entry.quantity}
+            updateCart={updateCart}
+          />)
           )}
         </div>
       </main>
@@ -20,6 +26,4 @@ export default function Cart({ cart }: CartProps) {
   )
 }
 
-// (
-//   <ProductEntry product={product} key={product.id} />
-// )
+export default Cart;
