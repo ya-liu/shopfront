@@ -14,7 +14,10 @@ type AppProps = {
 }
 
 const App = ({ products }: AppProps) => {
-  const [cart, setCart] = useState<CartInfo[]>([]);
+  let windowCart = window.localStorage.getItem('cart') || '[]';
+  let windowArray = JSON.parse(windowCart);
+
+  const [cart, setCart] = useState<CartInfo[]>(windowArray);
   const [totalAmount, setTotalAmount] = useState(0);
 
   const updateTotal = useCallback(() => {
@@ -27,6 +30,7 @@ const App = ({ products }: AppProps) => {
 
   useEffect(() => {
     updateTotal();
+    window.localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart, updateTotal])
 
   const findInCart = (product: ShopifyProduct): number => {
