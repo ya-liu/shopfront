@@ -23,7 +23,7 @@ const App = ({ products }: AppProps) => {
 
   const addToCart = (product: ShopifyProduct): void => {
     const inventory = product.variants[0].inventory_quantity;
-    let copy = cart;
+    let copy = cart.slice();
     let found = findInCart(product);
     if (found < 0) {
       copy.push({item: product, quantity: 1})
@@ -38,14 +38,14 @@ const App = ({ products }: AppProps) => {
   }
 
   const updateCart = (product: ShopifyProduct, quantity: number): void => {
-    let copy = cart;
+    // let copy = cart;
     let found = findInCart(product);
-    copy[found].quantity = quantity;
-    setCart(copy);
+    cart[found].quantity = quantity;
+    setCart(cart);
   }
 
   const removeItem = (product: ShopifyProduct): void => {
-    let copy = cart;
+    let copy = cart.slice();
     let found = findInCart(product);
     copy.splice(found, 1);
     setCart(copy);

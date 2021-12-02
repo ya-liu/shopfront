@@ -16,10 +16,7 @@ const CartProduct = ({ product, initialQuantity, updateCart, removeItem }: Produ
   useEffect(() => {
     // console.log(quantity);
     updateCart(product, quantity);
-    if (quantity === 0) {
-      removeItem(product);
-    }
-  }, [quantity, product, updateCart, removeItem])
+  }, [quantity, product, updateCart])
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setQuantity(Number(e.target.value));

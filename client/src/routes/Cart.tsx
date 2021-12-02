@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { ShopifyProduct, CartInfo } from '../interfaces';
 import CartProduct from '../components/CartProduct';
 
@@ -9,10 +8,6 @@ type CartProps = {
 }
 
 const Cart = ({ cart, updateCart, removeItem }: CartProps) => {
-  useEffect(() => {
-    console.log(cart);
-  }, [cart])
-
   return (
     <>
       <main>
