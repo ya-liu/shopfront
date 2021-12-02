@@ -15,7 +15,6 @@ const Cart = ({ cart, updateCart, removeItem, totalAmount, updateTotal }: CartPr
 
   useEffect(() => {
     console.log(totalAmount);
-    updateTotal();
   }, [cart, totalAmount, updateTotal]);
 
   return (

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Routes, Route } from "react-router-dom";
 import './App.css';
 import { ShopifyProduct, CartInfo } from "./interfaces";
@@ -17,22 +17,17 @@ const App = ({ products }: AppProps) => {
   const [cart, setCart] = useState<CartInfo[]>([]);
   const [totalAmount, setTotalAmount] = useState(0);
 
-  useEffect(() => {
+  const updateTotal = useCallback(() => {
     let total = 0;
     cart.forEach((entry) => {
       total += Number(entry.item.variants[0].price) * entry.quantity;
     })
-    // console.log(total);
     setTotalAmount(total);
   }, [cart])
 
-  const updateTotal = () => {
-    let total = 0;
-    cart.forEach((entry) => {
-      total += Number(entry.item.variants[0].price) * entry.quantity;
-    })
-    setTotalAmount(total);
-  }
+  useEffect(() => {
+    updateTotal();
+  }, [cart, updateTotal])
 
   const findInCart = (product: ShopifyProduct): number => {
     let found = cart.findIndex(entry => entry.item.id === product.id);
