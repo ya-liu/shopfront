@@ -6,7 +6,7 @@ import Home from "./routes/Home";
 import Header from './components/Header';
 import Catalog from "./routes/Catalog";
 import About from './routes/About';
-import NoMatch from "./components/NoMatch";
+import NoMatch from "./routes/NoMatch";
 import Cart from './routes/Cart';
 
 type AppProps = {
