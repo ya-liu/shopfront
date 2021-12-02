@@ -34,11 +34,8 @@ const App = ({ products }: AppProps) => {
 
   const updateCart = (product: ShopifyProduct, quantity: number): void => {
     let copy = cart;
-    copy.forEach((entry) => {
-      if (entry.item.id === product.id) {
-        entry.quantity = quantity;
-      }
-    })
+    let found = copy.findIndex(entry => entry.item.id === product.id);
+    copy[found].quantity = quantity;
     setCart(copy);
   }
 
