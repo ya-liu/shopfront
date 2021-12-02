@@ -6,16 +6,20 @@ type ProductProps = {
   product: ShopifyProduct;
   initialQuantity: number;
   updateCart: (product: ShopifyProduct, quantity: number) => void;
+  removeItem: (product: ShopifyProduct) => void;
 }
 
-const CartProduct = ({ product, initialQuantity, updateCart }: ProductProps): JSX.Element => {
+const CartProduct = ({ product, initialQuantity, updateCart, removeItem }: ProductProps): JSX.Element => {
   const [quantity, setQuantity] = useState(initialQuantity);
   const inventory = product.variants[0].inventory_quantity;
 
   useEffect(() => {
     // console.log(quantity);
     updateCart(product, quantity);
-  }, [quantity, product, updateCart])
+    if (quantity === 0) {
+      removeItem(product);
+    }
+  }, [quantity, product, updateCart, removeItem])
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setQuantity(Number(e.target.value));
@@ -48,6 +52,7 @@ const CartProduct = ({ product, initialQuantity, updateCart }: ProductProps): JS
           onClick={() => { quantity < inventory ? setQuantity(quantity + 1) : setQuantity(inventory) }}
         />
       </div>
+      <button onClick={() => removeItem(product)}>Remove Item</button>
     </>
   );
 };

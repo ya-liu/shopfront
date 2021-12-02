@@ -1,12 +1,18 @@
+import { useEffect } from 'react';
 import { ShopifyProduct, CartInfo } from '../interfaces';
 import CartProduct from '../components/CartProduct';
 
 type CartProps = {
   cart: CartInfo[];
   updateCart: (product: ShopifyProduct, quantity: number) => void;
+  removeItem: (product: ShopifyProduct) => void;
 }
 
-const Cart = ({ cart, updateCart }: CartProps) => {
+const Cart = ({ cart, updateCart, removeItem }: CartProps) => {
+  useEffect(() => {
+    console.log(cart);
+  }, [cart])
+
   return (
     <>
       <main>
@@ -18,6 +24,7 @@ const Cart = ({ cart, updateCart }: CartProps) => {
             key={entry.item.id}
             initialQuantity={entry.quantity}
             updateCart={updateCart}
+            removeItem={removeItem}
           />)
           )}
         </div>
