@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import Grid from '@mui/material/Grid';
@@ -27,7 +27,7 @@ const validationSchema = yup.object({
 
 export default function AddressForm({ handleShippingForm }: AddressProps) {
   const [checked, setChecked] = useState(true);
-  const { register, control, formState: { errors } } = useForm({
+  const { register, formState: { errors } } = useForm({
     resolver: yupResolver(validationSchema)
   });
 
@@ -157,11 +157,11 @@ export default function AddressForm({ handleShippingForm }: AddressProps) {
           />
         </Grid>
         <Grid item xs={12}>
-          {/* <FormControlLabel
+          <FormControlLabel
             control={<Checkbox color="secondary" name="saveAddress" value={checked} onChange={handleCheckbox} />}
             label="Same as billing address"
-          /> */}
-          <FormControlLabel
+          />
+          {/* <FormControlLabel
             control={
               <Controller
                 name="saveAddress"
@@ -177,7 +177,7 @@ export default function AddressForm({ handleShippingForm }: AddressProps) {
                 Same as billing address
               </Typography>
             }
-          />
+          /> */}
         </Grid>
       </Grid>
     </>
