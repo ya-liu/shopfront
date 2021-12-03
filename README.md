@@ -10,11 +10,13 @@ React.js
 
 - The user is able to browse a list of products from a Shopify development store.
 
-- The user is able to add the product to cart and update quantity in cart.
+- The user is able to search with keywords using the search bar on the home page.
+
+- The user is able to add the product to cart and update product quantity in cart.
 
 - The user is able to fill out an address form and payment information to complete the checkout process.
 
-- The user is able to search for orders using the email address at the time of checkout.
+- The user is able to search for orders with the email address used at the time of checkout.
 
 - Cart content is stored in the browser, so the user is able to see items in the cart upon page refresh.
 

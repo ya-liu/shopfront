@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { Routes, Route } from "react-router-dom";
+import CssBaseline from '@mui/material/CssBaseline';
 import './App.css';
 import { ShopifyProduct, CartInfo } from "./interfaces";
 import Home from "./routes/Home";
@@ -72,6 +73,7 @@ const App = ({ products }: AppProps) => {
 
   return (
     <div className="App">
+      <CssBaseline />
       <Header />
       <Routes>
         <Route index element={<Home products={products} addToCart={addToCart} />} />
