@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
@@ -11,7 +10,7 @@ type AddressProps = {
 
 export default function AddressForm({ handleShippingForm }: AddressProps) {
   return (
-    <React.Fragment>
+    <>
       <Typography variant="h6" gutterBottom>
         Shipping address
       </Typography>
@@ -111,11 +110,11 @@ export default function AddressForm({ handleShippingForm }: AddressProps) {
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
-            control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
-            label="Use this address for payment details"
+            control={<Checkbox color="secondary" name="saveAddress" value="yes" onChange={handleShippingForm} />}
+            label="Same as billing address"
           />
         </Grid>
       </Grid>
-    </React.Fragment>
+    </>
   );
 }

@@ -17,9 +17,10 @@ const payments = [
 type ReviewProps = {
   cart: CartInfo[];
   total: number;
+  shippingInfo: object;
 }
 
-export default function Review({cart, total}: ReviewProps) {
+export default function Review({cart, total, shippingInfo}: ReviewProps) {
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>

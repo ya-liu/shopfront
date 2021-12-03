@@ -16,14 +16,14 @@ import Review from '../components/Review';
 
 const steps = ['Shipping information', 'Payment', 'Review your order'];
 
-function getStepContent(step: number, cart: CartInfo[], total: number, handleShippingForm: (e: React.ChangeEvent<HTMLInputElement>) => void) {
+function getStepContent(step: number, cart: CartInfo[], total: number, shippingInfo: object, handleShippingForm: (e: React.ChangeEvent<HTMLInputElement>) => void) {
   switch (step) {
     case 0:
       return <AddressForm handleShippingForm={handleShippingForm} />;
     case 1:
       return <PaymentForm />;
     case 2:
-      return <Review cart={cart} total={total} />;
+      return <Review cart={cart} total={total} shippingInfo={shippingInfo} />;
     default:
       throw new Error('Unknown step');
   }
@@ -88,7 +88,7 @@ export default function Checkout({ cart, total }: CheckoutProps) {
               </>
             ) : (
               <>
-                {getStepContent(activeStep, cart, total, handleShippingForm)}
+                {getStepContent(activeStep, cart, total, shippingInfo, handleShippingForm)}
                 <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                   {activeStep !== 0 && (
                     <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
