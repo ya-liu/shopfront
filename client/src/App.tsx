@@ -4,6 +4,7 @@ import './App.css';
 import { ShopifyProduct, CartInfo } from "./interfaces";
 import Home from "./routes/Home";
 import Header from './components/Header';
+import Footer from "./components/Footer";
 import Catalog from "./routes/Catalog";
 import About from './routes/About';
 import NoMatch from "./routes/NoMatch";
@@ -80,6 +81,7 @@ const App = ({ products }: AppProps) => {
         <Route path="checkout" element={<Checkout cart={cart} total={totalAmount} />} />
         <Route path="*" element={<NoMatch />} />
       </Routes>
+      <Footer />
     </div>
   );
 }
