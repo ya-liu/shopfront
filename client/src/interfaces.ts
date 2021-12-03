@@ -83,6 +83,7 @@ export interface CartInfo {
 export interface AddressFormInputs {
   firstName: string;
   lastName: string;
+  email: string;
   address1: string;
   address2: string;
   city: string;

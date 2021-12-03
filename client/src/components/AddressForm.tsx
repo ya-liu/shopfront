@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import { useForm, Controller } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
@@ -9,8 +12,24 @@ type AddressProps = {
   handleShippingForm: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
+const validationSchema = yup.object({
+  firstName: yup.string().defined(),
+  lastName: yup.string().defined(),
+  email: yup.string().email().required().email('Email is invalid'),
+  address1: yup.string().defined(),
+  address2: yup.string().nullable().defined(),
+  city: yup.string().defined(),
+  state: yup.string().defined(),
+  zip: yup.string().defined(),
+  country: yup.string().defined(),
+  saveAddress: yup.string().defined(),
+})
+
 export default function AddressForm({ handleShippingForm }: AddressProps) {
   const [checked, setChecked] = useState(true);
+  const { register, control, formState: { errors } } = useForm({
+    resolver: yupResolver(validationSchema)
+  });
 
   const handleCheckbox = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setChecked(!checked);
@@ -27,13 +46,18 @@ export default function AddressForm({ handleShippingForm }: AddressProps) {
           <TextField
             required
             id="firstName"
-            name="firstName"
+            // name="firstName"
             label="First name"
             fullWidth
             autoComplete="given-name"
             variant="standard"
+            {...register('firstName')}
+            error={errors.firstName ? true : false}
             onChange={handleShippingForm}
           />
+          <Typography variant="inherit" color="textSecondary">
+            {errors.firstName?.message}
+          </Typography>
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
@@ -46,6 +70,22 @@ export default function AddressForm({ handleShippingForm }: AddressProps) {
             variant="standard"
             onChange={handleShippingForm}
           />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="email"
+            // name="email"
+            label="Email"
+            fullWidth
+            {...register('email')}
+            variant="standard"
+            error={errors.email ? true : false}
+            onChange={handleShippingForm}
+          />
+          <Typography variant="inherit" color="textSecondary">
+            {errors.email?.message}
+          </Typography>
         </Grid>
         <Grid item xs={12}>
           <TextField
@@ -117,17 +157,27 @@ export default function AddressForm({ handleShippingForm }: AddressProps) {
           />
         </Grid>
         <Grid item xs={12}>
-          <FormControlLabel
+          {/* <FormControlLabel
             control={<Checkbox color="secondary" name="saveAddress" value={checked} onChange={handleCheckbox} />}
             label="Same as billing address"
-          />
-          {/* <Controller
-            name="saveAddress"
-            control={control}
-            defaultValue={String(checked)}
-            rules={{ required: true }}
-            render={({ field }) => <Checkbox {...field} onChange={handleCheckbox} />}
           /> */}
+          <FormControlLabel
+            control={
+              <Controller
+                name="saveAddress"
+                control={control}
+                defaultValue={String(checked)}
+                render={({ field: { onChange } }) => (
+                  <Checkbox onChange={handleCheckbox} />
+                )}
+              />
+            }
+            label={
+              <Typography>
+                Same as billing address
+              </Typography>
+            }
+          />
         </Grid>
       </Grid>
     </>

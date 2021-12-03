@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { CartInfo } from '../interfaces';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -54,6 +54,10 @@ export default function Checkout({ cart, total }: CheckoutProps) {
     zip: '',
     country: ''
   });
+
+  useEffect(() => {
+    console.log(shippingInfo)
+  }, [shippingInfo])
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
