@@ -28,37 +28,20 @@ export default function Home({ products, addToCart }: HomeProps) {
   }
 
   return (
-    <>
-      <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
-        <Typography component="h2" variant="h4" align="center" gutterBottom>
-          Welcome to the shop!
-        </Typography>
-        <form onSubmit={onSubmit}>
-          <input
-            type="text"
-            id="product"
-            onChange={onChange}
-            placeholder="search for a product"
-          />
-          <input type="submit" value="Go" />
-        </form>
-        <ProductList products={products} query={finalQuery} addToCart={addToCart} />
-      </Container>
-    </>
+    <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
+      <Typography component="h2" variant="h4" align="center" gutterBottom>
+        Welcome to the shop!
+      </Typography>
+      <form onSubmit={onSubmit}>
+        <input
+          type="text"
+          id="product"
+          onChange={onChange}
+          placeholder="search for a product"
+        />
+        <input type="submit" value="Go" />
+      </form>
+      <ProductList products={products} query={finalQuery} addToCart={addToCart} />
+    </Container>
   );
 }
-
-{/* <Grid container spacing={2}>
-<Grid item xs={8} sm={4}>
-  <TextField
-    id="product"
-    name="product"
-    label="Search for a product"
-    fullWidth
-    onChange={onChange}
-  />
-</Grid>
-<Grid item xs={4} sm={2}>
-  <Button type="submit" variant="contained">Go</Button>
-</Grid>
-</Grid> */}

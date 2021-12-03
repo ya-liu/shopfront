@@ -1,5 +1,7 @@
 import { ShopifyProduct } from "../interfaces";
 import ProductList from '../components/ProductList';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
 
 type CatalogProps = {
   products: ShopifyProduct[];
@@ -8,11 +10,11 @@ type CatalogProps = {
 
 export default function Catalog({ products, addToCart }: CatalogProps) {
   return (
-    <>
-      <main>
-        <h2>All products at espresso all day:</h2>
-        <ProductList products={products} query='' addToCart={addToCart}/>
-      </main>
-    </>
+    <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
+      <Typography component="h2" variant="h4" align="center" gutterBottom>
+        All products at espresso all day:
+      </Typography>
+      <ProductList products={products} query='' addToCart={addToCart} />
+    </Container>
   );
 }

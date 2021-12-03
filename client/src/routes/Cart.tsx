@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
 import { ShopifyProduct, CartInfo } from '../interfaces';
 import CartProduct from '../components/CartProduct';
 
@@ -19,26 +20,24 @@ const Cart = ({ cart, updateCart, removeItem, totalAmount, updateTotal }: CartPr
   }, [cart, updateTotal]);
 
   return (
-    <>
-      <main>
-        <h2>Cart</h2>
-        <div className="cart-list">
-          {cart.map((entry: CartInfo) =>
-          (<CartProduct
-            product={entry.item}
-            key={entry.item.id}
-            initialQuantity={entry.quantity}
-            updateCart={updateCart}
-            removeItem={removeItem}
-          />)
-          )}
-        </div>
-        <div className="total-amount">
-          Total Amount: {`$${totalAmount}`}
-        </div>
-        <Link to="/checkout"><Button variant="contained">Check Out</Button></Link>
-      </main>
-    </>
+    <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
+      <h2>Cart</h2>
+      <div className="cart-list">
+        {cart.map((entry: CartInfo) =>
+        (<CartProduct
+          product={entry.item}
+          key={entry.item.id}
+          initialQuantity={entry.quantity}
+          updateCart={updateCart}
+          removeItem={removeItem}
+        />)
+        )}
+      </div>
+      <div className="total-amount">
+        Total Amount: {`$${totalAmount}`}
+      </div>
+      <Link to="/checkout"><Button variant="contained">Check Out</Button></Link>
+    </Container>
   )
 }
 
