@@ -1,7 +1,7 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { CartInfo } from '../interfaces';
 
-type CheckoutProps = {
+type CheckoutRHFProps = {
   cart: CartInfo[];
 }
 
@@ -12,7 +12,7 @@ type Inputs = {
   address: string,
 }
 
-const Checkout = ({ cart }: CheckoutProps) => {
+const CheckoutRHF = ({ cart }: CheckoutRHFProps) => {
   const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = (contactInfo) => {
@@ -47,4 +47,4 @@ const Checkout = ({ cart }: CheckoutProps) => {
   )
 }
 
-export default Checkout;
+export default CheckoutRHF;
