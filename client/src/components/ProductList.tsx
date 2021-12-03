@@ -18,7 +18,7 @@ const ProductList = ({ products, query, addToCart }: ProductListProps): JSX.Elem
 
   return (
     <div className="display-products">
-      <Grid container spacing={3}>
+      <Grid container spacing={2}>
         {displayList.map((product: ShopifyProduct) => (
           <ProductEntry product={product} key={product.id} addToCart={addToCart} />
         ))}

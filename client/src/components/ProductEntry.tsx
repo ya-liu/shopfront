@@ -2,6 +2,7 @@ import { ShopifyProduct } from '../interfaces';
 import Product from './Product';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
+import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
@@ -19,15 +20,17 @@ const ProductEntry = ({ product, addToCart }: ProductEntryProps): JSX.Element =>
   }
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <Product product={product} />
-      <CardContent>
-        <Typography variant="body2" color="text.secondary">
-          {body}
-        </Typography>
-      </CardContent>
-      <Button variant="contained" onClick={() => addToCart(product)}>Add to Cart</Button>
-    </Card>
+    <Grid item xs={12} sm={6}>
+      <Card sx={{ maxWidth: 345 }}>
+        <Product product={product} />
+        <CardContent>
+          <Typography variant="body2" color="text.secondary">
+            {body}
+          </Typography>
+        </CardContent>
+        <Button variant="contained" onClick={() => addToCart(product)}>Add to Cart</Button>
+      </Card>
+    </Grid>
   );
 };
 

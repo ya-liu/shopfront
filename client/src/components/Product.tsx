@@ -12,8 +12,7 @@ const Product = ({ product }: ProductProps): JSX.Element => {
     <>
       <CardMedia
         component="img"
-        height="200"
-        width="300"
+        height="150"
         image={product.image.src}
         alt="product"
       />
