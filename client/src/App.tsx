@@ -34,8 +34,6 @@ const App = ({ products }: AppProps) => {
   useEffect(() => {
     updateTotal();
     window.localStorage.setItem('cart', JSON.stringify(cart));
-    console.log(process.env.REACT_APP_LOCAL_SECRET_CODE);
-    // console.log(process.env.REACT_APP_NOT_SECRET_CODE);
   }, [cart, updateTotal])
 
   const findInCart = (product: ShopifyProduct): number => {
