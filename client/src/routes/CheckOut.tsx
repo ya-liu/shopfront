@@ -9,7 +9,6 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AddressForm from '../components/AddressForm';
 import PaymentForm from '../components/PaymentForm';
 import Review from '../components/Review';
@@ -28,8 +27,6 @@ function getStepContent(step: number, cart: CartInfo[], total: number, shippingI
       throw new Error('Unknown step');
   }
 }
-
-const theme = createTheme();
 
 type CheckoutProps = {
   cart: CartInfo[];
@@ -79,7 +76,7 @@ export default function Checkout({ cart, total }: CheckoutProps) {
   }
 
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <CssBaseline />
       <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
         <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
@@ -127,6 +124,6 @@ export default function Checkout({ cart, total }: CheckoutProps) {
           </>
         </Paper>
       </Container>
-    </ThemeProvider>
+    </>
   );
 }
