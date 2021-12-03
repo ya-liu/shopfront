@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
 import { ShopifyProduct, CartInfo } from '../interfaces';
 import CartProduct from '../components/CartProduct';
 
@@ -21,8 +23,10 @@ const Cart = ({ cart, updateCart, removeItem, totalAmount, updateTotal }: CartPr
 
   return (
     <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
-      <h2>Cart</h2>
-      <div className="cart-list">
+      <Typography component="h2" variant="h4" align="center" gutterBottom>
+        Cart
+      </Typography>
+      <Grid container spacing={2}>
         {cart.map((entry: CartInfo) =>
         (<CartProduct
           product={entry.item}
@@ -32,7 +36,7 @@ const Cart = ({ cart, updateCart, removeItem, totalAmount, updateTotal }: CartPr
           removeItem={removeItem}
         />)
         )}
-      </div>
+      </Grid>
       <div className="total-amount">
         Total Amount: {`$${totalAmount}`}
       </div>

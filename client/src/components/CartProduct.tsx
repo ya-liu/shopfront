@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import Product from './Product';
 import { ShopifyProduct } from '../interfaces';
+import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 
 type ProductProps = {
   product: ShopifyProduct;
@@ -23,34 +26,32 @@ const CartProduct = ({ product, initialQuantity, updateCart, removeItem }: Produ
   }
 
   return (
-    <>
+    <Grid item xs={12}>
       <Product product={product} />
       <div className="quantity buttons_added">
-        <input
-          type="button"
-          value="-"
-          className="minus"
+        <Button
+          variant="outlined"
           onClick={() => { quantity > 0 ? setQuantity(quantity - 1) : setQuantity(0) }}
-        />
-        <input
+        >
+          -
+        </Button>
+        <TextField
           type="number"
-          step="1"
-          min="0"
-          max={inventory}
-          name="quantity"
           value={quantity}
-          className="input-text qty text"
+          variant="standard"
+          size="small"
           onChange={onChangeHandler}
+          inputProps={{ min: "0", max: {inventory}, step: "1" }}
         />
-        <input
-          type="button"
-          value="+"
-          className="plus"
+        <Button
+          variant="outlined"
           onClick={() => { quantity < inventory ? setQuantity(quantity + 1) : setQuantity(inventory) }}
-        />
+        >
+          +
+        </Button>
       </div>
       <button onClick={() => removeItem(product)}>Remove Item</button>
-    </>
+    </Grid>
   );
 };
 
