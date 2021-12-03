@@ -32,8 +32,9 @@ type ShippingInfo = {
 }
 
 export default function Review({cart, total, shippingInfo}: ReviewProps) {
+  const { address1, address2, city, state, zip, country} = shippingInfo;
   let address;
-  !shippingInfo.address2 ? address = [shippingInfo.address1, shippingInfo.city, shippingInfo.zip, shippingInfo.country] : address = [shippingInfo.address1, shippingInfo.address2, shippingInfo.city, shippingInfo.zip, shippingInfo.country]
+  !shippingInfo.address2 ? address = [address1, city, state, zip, country] : address = [address1, address2, city, state, zip, country]
 
   return (
     <React.Fragment>
@@ -43,14 +44,14 @@ export default function Review({cart, total, shippingInfo}: ReviewProps) {
       <List disablePadding>
         {cart.map((entry) => (
           <ListItem key={entry.item.id} sx={{ py: 1, px: 0 }}>
-            <ListItemText primary={entry.item.title} secondary={entry.quantity} />
-            <Typography variant="body2">{entry.item.variants[0].price}</Typography>
+            <ListItemText primary={entry.item.title} secondary={`Quantity: ${entry.quantity}`} />
+            <Typography variant="body2">{`$${entry.item.variants[0].price}`}</Typography>
           </ListItem>
         ))}
         <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-            ${total}
+            {`$${total}`}
           </Typography>
         </ListItem>
       </List>

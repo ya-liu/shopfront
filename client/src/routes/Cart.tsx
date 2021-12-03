@@ -34,7 +34,7 @@ const Cart = ({ cart, updateCart, removeItem, totalAmount, updateTotal }: CartPr
           )}
         </div>
         <div className="total-amount">
-          Total Amount: ${totalAmount}
+          Total Amount: {`$${totalAmount}`}
         </div>
         <Link to="/checkout"><Button variant="contained">Check Out</Button></Link>
       </main>

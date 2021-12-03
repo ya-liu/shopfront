@@ -11,7 +11,7 @@ const Product = ({ product }: ProductProps): JSX.Element => {
       <br />
       {product.title}
       <br />
-      Price: ${product.variants[0].price}
+      Price: {`$${product.variants[0].price}`}
     </div>
   );
 };

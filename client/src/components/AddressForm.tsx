@@ -1,4 +1,5 @@
 import { useState } from 'react';
+// import { Controller, useForm } from 'react-hook-form';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
@@ -10,6 +11,7 @@ type AddressProps = {
 }
 
 export default function AddressForm({ handleShippingForm }: AddressProps) {
+  // const { control } = useForm<AddressFormInputs>();
   const [checked, setChecked] = useState(true);
 
   const handleCheckbox = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -121,6 +123,13 @@ export default function AddressForm({ handleShippingForm }: AddressProps) {
             control={<Checkbox color="secondary" name="saveAddress" value={checked} onChange={handleCheckbox} />}
             label="Same as billing address"
           />
+          {/* <Controller
+            name="saveAddress"
+            control={control}
+            defaultValue={String(checked)}
+            rules={{ required: true }}
+            render={({ field }) => <Checkbox {...field} onChange={handleCheckbox} />}
+          /> */}
         </Grid>
       </Grid>
     </>
