@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
+import Typography from '@mui/material/Typography';
 
 const Header = () => (
   <>
     <header className="App-header">
-      espresso all day
+      <Typography variant="h3" gutterBottom>
+        espresso all day
+      </Typography>
     </header>
     <nav>
       <Link to="/">Home</Link>
