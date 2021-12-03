@@ -1,3 +1,4 @@
+import Grid from '@mui/material/Grid';
 import { ShopifyProduct } from '../interfaces';
 import ProductEntry from './ProductEntry';
 
@@ -17,9 +18,11 @@ const ProductList = ({ products, query, addToCart }: ProductListProps): JSX.Elem
 
   return (
     <div className="display-products">
-      {displayList.map((product: ShopifyProduct) => (
-        <ProductEntry product={product} key={product.id} addToCart={addToCart} />
-      ))}
+      <Grid container spacing={3}>
+        {displayList.map((product: ShopifyProduct) => (
+          <ProductEntry product={product} key={product.id} addToCart={addToCart} />
+        ))}
+      </Grid>
     </div>
   )
 }
