@@ -17,7 +17,18 @@ const payments = [
 type ReviewProps = {
   cart: CartInfo[];
   total: number;
-  shippingInfo: object;
+  shippingInfo: ShippingInfo;
+}
+
+type ShippingInfo = {
+  firstName: string;
+  lastName: string;
+  address1: string;
+  address2?: string;
+  city: string;
+  state: string;
+  zip: string;
+  country: string;
 }
 
 export default function Review({cart, total, shippingInfo}: ReviewProps) {

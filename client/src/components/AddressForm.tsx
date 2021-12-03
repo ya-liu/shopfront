@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
@@ -9,6 +10,13 @@ type AddressProps = {
 }
 
 export default function AddressForm({ handleShippingForm }: AddressProps) {
+  const [checked, setChecked] = useState(true);
+
+  const handleCheckbox = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setChecked(!checked);
+    handleShippingForm(e);
+  }
+
   return (
     <>
       <Typography variant="h6" gutterBottom>
@@ -110,7 +118,7 @@ export default function AddressForm({ handleShippingForm }: AddressProps) {
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
-            control={<Checkbox color="secondary" name="saveAddress" value="yes" onChange={handleShippingForm} />}
+            control={<Checkbox color="secondary" name="saveAddress" value={checked} onChange={handleCheckbox} />}
             label="Same as billing address"
           />
         </Grid>
