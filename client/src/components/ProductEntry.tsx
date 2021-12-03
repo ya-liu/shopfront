@@ -28,7 +28,7 @@ const ProductEntry = ({ product, addToCart }: ProductEntryProps): JSX.Element =>
             {body}
           </Typography>
         </CardContent>
-        <Button variant="contained" onClick={() => addToCart(product)}>Add to Cart</Button>
+        <Button onClick={() => addToCart(product)}>Add to Cart</Button>
       </Card>
     </Grid>
   );
