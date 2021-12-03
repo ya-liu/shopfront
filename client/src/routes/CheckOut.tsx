@@ -56,7 +56,7 @@ export default function Checkout({ cart, total }: CheckoutProps) {
   });
 
   useEffect(() => {
-    console.log(shippingInfo)
+    console.log(shippingInfo);
   }, [shippingInfo])
 
   const handleNext = () => {
