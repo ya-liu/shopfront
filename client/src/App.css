@@ -18,3 +18,9 @@ ul {
   list-style-type: none;
   list-style-position: inside;
 }
+
+nav {
+  display: flex;
+  width: auto;
+  justify-content: space-evenly;
+}
