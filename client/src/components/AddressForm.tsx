@@ -5,7 +5,11 @@ import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 
-export default function AddressForm() {
+type AddressProps = {
+  handleShippingForm: (e: React.ChangeEvent<HTMLInputElement>) => void
+}
+
+export default function AddressForm({ handleShippingForm }: AddressProps) {
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -21,6 +25,7 @@ export default function AddressForm() {
             fullWidth
             autoComplete="given-name"
             variant="standard"
+            onChange={handleShippingForm}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -32,6 +37,7 @@ export default function AddressForm() {
             fullWidth
             autoComplete="family-name"
             variant="standard"
+            onChange={handleShippingForm}
           />
         </Grid>
         <Grid item xs={12}>
@@ -43,6 +49,7 @@ export default function AddressForm() {
             fullWidth
             autoComplete="shipping address-line1"
             variant="standard"
+            onChange={handleShippingForm}
           />
         </Grid>
         <Grid item xs={12}>
@@ -53,6 +60,7 @@ export default function AddressForm() {
             fullWidth
             autoComplete="shipping address-line2"
             variant="standard"
+            onChange={handleShippingForm}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -64,6 +72,7 @@ export default function AddressForm() {
             fullWidth
             autoComplete="shipping address-level2"
             variant="standard"
+            onChange={handleShippingForm}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -73,6 +82,7 @@ export default function AddressForm() {
             label="State/Province/Region"
             fullWidth
             variant="standard"
+            onChange={handleShippingForm}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -84,6 +94,7 @@ export default function AddressForm() {
             fullWidth
             autoComplete="shipping postal-code"
             variant="standard"
+            onChange={handleShippingForm}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -95,6 +106,7 @@ export default function AddressForm() {
             fullWidth
             autoComplete="shipping country"
             variant="standard"
+            onChange={handleShippingForm}
           />
         </Grid>
         <Grid item xs={12}>

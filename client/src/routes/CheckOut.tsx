@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { CartInfo } from '../interfaces';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
@@ -16,10 +16,10 @@ import Review from '../components/Review';
 
 const steps = ['Shipping information', 'Payment', 'Review your order'];
 
-function getStepContent(step: number, cart: CartInfo[], total: number) {
+function getStepContent(step: number, cart: CartInfo[], total: number, handleShippingForm: (e: React.ChangeEvent<HTMLInputElement>) => void) {
   switch (step) {
     case 0:
-      return <AddressForm />;
+      return <AddressForm handleShippingForm={handleShippingForm} />;
     case 1:
       return <PaymentForm />;
     case 2:
@@ -38,6 +38,11 @@ type CheckoutProps = {
 
 export default function Checkout({ cart, total }: CheckoutProps) {
   const [activeStep, setActiveStep] = useState(0);
+  const [shippingInfo, setShippingInfo] = useState({});
+
+  useEffect(() => {
+    console.log(shippingInfo);
+  }, [shippingInfo])
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -46,6 +51,13 @@ export default function Checkout({ cart, total }: CheckoutProps) {
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
+
+  const handleShippingForm = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setShippingInfo((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value
+    }))
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -76,7 +88,7 @@ export default function Checkout({ cart, total }: CheckoutProps) {
               </>
             ) : (
               <>
-                {getStepContent(activeStep, cart, total)}
+                {getStepContent(activeStep, cart, total, handleShippingForm)}
                 <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                   {activeStep !== 0 && (
                     <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
