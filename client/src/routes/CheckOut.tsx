@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { CartInfo, AddressFormInputs } from '../interfaces';
+import { CartInfo, AddressFormInputs, PaymentFormInputs } from '../interfaces';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
@@ -14,14 +14,14 @@ import Review from '../components/Review';
 
 const steps = ['Shipping information', 'Payment', 'Review your order'];
 
-function getStepContent(step: number, cart: CartInfo[], total: number, shippingInfo: AddressFormInputs, handleShippingForm: (e: React.ChangeEvent<HTMLInputElement>) => void) {
+function getStepContent(step: number, cart: CartInfo[], total: number, shippingInfo: AddressFormInputs, paymentInfo: PaymentFormInputs, handleShippingForm: (e: React.ChangeEvent<HTMLInputElement>) => void, handlePaymentForm: (e: React.ChangeEvent<HTMLInputElement>) => void) {
   switch (step) {
     case 0:
       return <AddressForm handleShippingForm={handleShippingForm} />;
     case 1:
-      return <PaymentForm />;
+      return <PaymentForm handlePaymentForm={handlePaymentForm} />;
     case 2:
-      return <Review cart={cart} total={total} shippingInfo={shippingInfo} />;
+      return <Review cart={cart} total={total} shippingInfo={shippingInfo} paymentInfo={paymentInfo} />;
     default:
       throw new Error('Unknown step');
   }
@@ -46,9 +46,16 @@ export default function Checkout({ cart, total }: CheckoutProps) {
     saveAddress: '',
   });
 
+  const [paymentInfo, setPaymentInfo] = useState<PaymentFormInputs>({
+    cardName: '',
+    cardNumber: '',
+    expDate: '',
+  })
+
   useEffect(() => {
     console.log(shippingInfo);
-  }, [shippingInfo])
+    console.log(paymentInfo)
+  }, [shippingInfo, paymentInfo])
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -63,6 +70,14 @@ export default function Checkout({ cart, total }: CheckoutProps) {
     setShippingInfo({
       ...shippingInfo,
       [name]: value
+    });
+  }
+
+  const handlePaymentForm = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const { id, value } = e.target;
+    setPaymentInfo({
+      ...paymentInfo,
+      [id]: value
     });
   }
 
@@ -94,7 +109,7 @@ export default function Checkout({ cart, total }: CheckoutProps) {
               </>
             ) : (
               <>
-                {getStepContent(activeStep, cart, total, shippingInfo, handleShippingForm)}
+                {getStepContent(activeStep, cart, total, shippingInfo, paymentInfo, handleShippingForm, handlePaymentForm)}
                 <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                   {activeStep !== 0 && (
                     <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>

@@ -92,3 +92,9 @@ export interface AddressFormInputs {
   country: string;
   saveAddress: string;
 }
+
+export interface PaymentFormInputs {
+  cardName: string;
+  cardNumber: string;
+  expDate: string;
+}

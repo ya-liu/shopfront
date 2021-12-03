@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CartInfo } from '../interfaces';
+import { CartInfo, AddressFormInputs, PaymentFormInputs } from '../interfaces';
 import Typography from '@mui/material/Typography';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -16,24 +16,17 @@ const payments = [
 type ReviewProps = {
   cart: CartInfo[];
   total: number;
-  shippingInfo: ShippingInfo;
+  shippingInfo: AddressFormInputs;
+  paymentInfo: PaymentFormInputs
 }
 
-type ShippingInfo = {
-  firstName: string;
-  lastName: string;
-  address1: string;
-  address2?: string;
-  city: string;
-  state: string;
-  zip: string;
-  country: string;
-}
-
-export default function Review({cart, total, shippingInfo}: ReviewProps) {
-  const { address1, address2, city, state, zip, country} = shippingInfo;
+export default function Review({ cart, total, shippingInfo, paymentInfo }: ReviewProps) {
+  const { address1, address2, city, state, zip, country } = shippingInfo;
   let address;
-  !shippingInfo.address2 ? address = [address1, city, state, zip, country] : address = [address1, address2, city, state, zip, country]
+  !shippingInfo.address2 ? address = [address1, city, state, zip, country] : address = [address1, address2, city, state, zip, country];
+
+  // const { cardNumber } = paymentInfo;
+  // const displayNumber = cardNumber.slice(-4);
 
   return (
     <React.Fragment>
