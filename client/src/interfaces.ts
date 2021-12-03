@@ -79,3 +79,15 @@ export interface CartInfo {
   item: ShopifyProduct;
   quantity: number;
 }
+
+export interface AddressFormInputs {
+  firstName: string;
+  lastName: string;
+  address1: string;
+  address2: string;
+  city: string;
+  state: string;
+  zip: string;
+  country: string;
+  saveAddress: string;
+}
