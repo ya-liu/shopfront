@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { CartInfo } from '../interfaces';
-import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
@@ -77,7 +76,6 @@ export default function Checkout({ cart, total }: CheckoutProps) {
 
   return (
     <>
-      <CssBaseline />
       <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
         <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
           <Typography component="h1" variant="h4" align="center">

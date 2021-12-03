@@ -6,7 +6,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
 
-const addresses = ['1 MUI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
+// const addresses = ['1 MUI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
 const payments = [
   { name: 'Card type', detail: 'Visa' },
   { name: 'Card holder', detail: 'Mr John Smith' },
@@ -32,6 +32,9 @@ type ShippingInfo = {
 }
 
 export default function Review({cart, total, shippingInfo}: ReviewProps) {
+  let address;
+  !shippingInfo.address2 ? address = [shippingInfo.address1, shippingInfo.city, shippingInfo.zip, shippingInfo.country] : address = [shippingInfo.address1, shippingInfo.address2, shippingInfo.city, shippingInfo.zip, shippingInfo.country]
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -56,8 +59,8 @@ export default function Review({cart, total, shippingInfo}: ReviewProps) {
           <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
             Shipping
           </Typography>
-          <Typography gutterBottom>John Smith</Typography>
-          <Typography gutterBottom>{addresses.join(', ')}</Typography>
+          <Typography gutterBottom>{shippingInfo.firstName.concat(' ', shippingInfo.lastName)}</Typography>
+          <Typography gutterBottom>{address.join(', ')}</Typography>
         </Grid>
         <Grid item container direction="column" xs={12} sm={6}>
           <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
