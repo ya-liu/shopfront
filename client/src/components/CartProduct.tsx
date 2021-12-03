@@ -17,7 +17,6 @@ const CartProduct = ({ product, initialQuantity, updateCart, removeItem }: Produ
   const inventory = product.variants[0].inventory_quantity;
 
   useEffect(() => {
-    // console.log(quantity);
     updateCart(product, quantity);
   }, [quantity, product, updateCart])
 
@@ -28,29 +27,35 @@ const CartProduct = ({ product, initialQuantity, updateCart, removeItem }: Produ
   return (
     <Grid item xs={12}>
       <Product product={product} />
-      <div className="quantity buttons_added">
-        <Button
-          variant="outlined"
-          onClick={() => { quantity > 0 ? setQuantity(quantity - 1) : setQuantity(0) }}
-        >
-          -
-        </Button>
-        <TextField
-          type="number"
-          value={quantity}
-          variant="standard"
-          size="small"
-          onChange={onChangeHandler}
-          inputProps={{ min: "0", max: {inventory}, step: "1" }}
-        />
-        <Button
-          variant="outlined"
-          onClick={() => { quantity < inventory ? setQuantity(quantity + 1) : setQuantity(inventory) }}
-        >
-          +
-        </Button>
-      </div>
-      <button onClick={() => removeItem(product)}>Remove Item</button>
+      <Grid container spacing={3}>
+        <Grid item xs={4}>
+          <Button
+            variant="outlined"
+            onClick={() => { quantity > 0 ? setQuantity(quantity - 1) : setQuantity(0) }}
+          >
+            -
+          </Button>
+        </Grid>
+        <Grid item xs={4}>
+          <TextField
+            type="number"
+            value={quantity}
+            variant="standard"
+            size="small"
+            onChange={onChangeHandler}
+            inputProps={{ min: "0", max: { inventory }, step: "1", style: { textAlign: "center" } }}
+          />
+        </Grid>
+        <Grid item xs={4}>
+          <Button
+            variant="outlined"
+            onClick={() => { quantity < inventory ? setQuantity(quantity + 1) : setQuantity(inventory) }}
+          >
+            +
+          </Button>
+        </Grid>
+      </Grid>
+      <Button onClick={() => removeItem(product)}>Remove Item</Button>
     </Grid>
   );
 };

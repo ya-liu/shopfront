@@ -37,9 +37,9 @@ const Cart = ({ cart, updateCart, removeItem, totalAmount, updateTotal }: CartPr
         />)
         )}
       </Grid>
-      <div className="total-amount">
+      <Typography variant="subtitle1" gutterBottom>
         Total Amount: {`$${totalAmount}`}
-      </div>
+      </Typography>
       <Link to="/checkout"><Button variant="contained">Check Out</Button></Link>
     </Container>
   )

@@ -29,5 +29,3 @@ const Product = ({ product }: ProductProps): JSX.Element => {
 };
 
 export default Product;
-
-// {product.image && <img src={product.image.src} alt="product" style={{ width: "300px", height: "200px" }} />}
