@@ -1,5 +1,4 @@
 import { useState } from 'react';
-// import { Controller, useForm } from 'react-hook-form';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
@@ -11,7 +10,6 @@ type AddressProps = {
 }
 
 export default function AddressForm({ handleShippingForm }: AddressProps) {
-  // const { control } = useForm<AddressFormInputs>();
   const [checked, setChecked] = useState(true);
 
   const handleCheckbox = (e: React.ChangeEvent<HTMLInputElement>): void => {
