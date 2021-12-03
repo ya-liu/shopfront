@@ -75,6 +75,7 @@ export default function AddressForm({ handleShippingForm }: AddressProps) {
           <TextField
             required
             id="email"
+            type="email"
             // name="email"
             label="Email"
             fullWidth

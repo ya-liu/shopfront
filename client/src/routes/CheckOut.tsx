@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { CartInfo } from '../interfaces';
+import { CartInfo, AddressFormInputs } from '../interfaces';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
@@ -14,7 +14,7 @@ import Review from '../components/Review';
 
 const steps = ['Shipping information', 'Payment', 'Review your order'];
 
-function getStepContent(step: number, cart: CartInfo[], total: number, shippingInfo: ShippingInfo, handleShippingForm: (e: React.ChangeEvent<HTMLInputElement>) => void) {
+function getStepContent(step: number, cart: CartInfo[], total: number, shippingInfo: AddressFormInputs, handleShippingForm: (e: React.ChangeEvent<HTMLInputElement>) => void) {
   switch (step) {
     case 0:
       return <AddressForm handleShippingForm={handleShippingForm} />;
@@ -32,27 +32,18 @@ type CheckoutProps = {
   total: number;
 }
 
-type ShippingInfo = {
-  firstName: string;
-  lastName: string;
-  address1: string;
-  address2?: string;
-  city: string;
-  state: string;
-  zip: string;
-  country: string;
-}
-
 export default function Checkout({ cart, total }: CheckoutProps) {
   const [activeStep, setActiveStep] = useState(0);
-  const [shippingInfo, setShippingInfo] = useState<ShippingInfo>({
+  const [shippingInfo, setShippingInfo] = useState<AddressFormInputs>({
     firstName: '',
     lastName: '',
+    email: '',
     address1: '',
     city: '',
     state: '',
     zip: '',
-    country: ''
+    country: '',
+    saveAddress: '',
   });
 
   useEffect(() => {
