@@ -81,6 +81,10 @@ export default function Checkout({ cart, total }: CheckoutProps) {
     });
   }
 
+  const handleOrderSubmit = (): void => {
+    console.log(shippingInfo)
+  };
+
   return (
     <>
       <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
@@ -116,13 +120,22 @@ export default function Checkout({ cart, total }: CheckoutProps) {
                       Back
                     </Button>
                   )}
-                  <Button
-                    variant="contained"
-                    onClick={handleNext}
-                    sx={{ mt: 3, ml: 1 }}
-                  >
-                    {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
-                  </Button>
+                  {activeStep === steps.length - 1 ?
+                    (<Button
+                      variant="contained"
+                      onClick={handleOrderSubmit}
+                      sx={{ mt: 3, ml: 1 }}
+                    >
+                      Place Order
+                    </Button>)
+                    :
+                    (<Button
+                      variant="contained"
+                      onClick={handleNext}
+                      sx={{ mt: 3, ml: 1 }}
+                    >
+                      Next
+                    </Button>)}
                 </Box>
               </>
             )}
