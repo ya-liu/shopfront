@@ -34,8 +34,10 @@ const App = ({ products }: AppProps) => {
 
   useEffect(() => {
     updateTotal();
+    console.log('in useEffect');
+
     window.localStorage.setItem('cart', JSON.stringify(cart));
-  }, [cart, updateTotal])
+  }, [cart, totalAmount, updateTotal])
 
   const findInCart = (product: ShopifyProduct): number => {
     let found = cart.findIndex(entry => entry.item.id === product.id);
@@ -59,9 +61,12 @@ const App = ({ products }: AppProps) => {
   }
 
   const updateCart = (product: ShopifyProduct, quantity: number): void => {
-    let copy = cart;
+    let copy = [...cart];
     let found = findInCart(product);
-    copy[found].quantity = quantity;
+    let item = {...cart[found]};
+    item.quantity = quantity;
+    copy[found] = item;
+
     setCart(copy);
   }
 

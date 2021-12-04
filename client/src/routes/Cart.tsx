@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
@@ -16,10 +16,6 @@ type CartProps = {
 }
 
 const Cart = ({ cart, updateCart, removeItem, totalAmount, updateTotal }: CartProps) => {
-
-  useEffect(() => {
-    updateTotal();
-  }, [cart, updateTotal]);
 
   return (
     <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>

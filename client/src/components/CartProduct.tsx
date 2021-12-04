@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Product from './Product';
 import { ShopifyProduct } from '../interfaces';
 import Grid from '@mui/material/Grid';
@@ -16,12 +16,18 @@ const CartProduct = ({ product, initialQuantity, updateCart, removeItem }: Produ
   const [quantity, setQuantity] = useState(initialQuantity);
   const inventory = product.variants[0].inventory_quantity;
 
-  useEffect(() => {
-    updateCart(product, quantity);
-  }, [quantity, product, updateCart])
-
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setQuantity(Number(e.target.value));
+  }
+
+  const minusClickHandler = (): void => {
+    quantity > 0 ? setQuantity(quantity - 1) : setQuantity(0);
+    updateCart(product, quantity);
+  }
+
+  const plusClickHandler = (): void => {
+    quantity < inventory ? setQuantity(quantity + 1) : setQuantity(inventory);
+    updateCart(product, quantity);
   }
 
   return (
@@ -31,7 +37,7 @@ const CartProduct = ({ product, initialQuantity, updateCart, removeItem }: Produ
         <Grid item xs={4}>
           <Button
             variant="outlined"
-            onClick={() => { quantity > 0 ? setQuantity(quantity - 1) : setQuantity(0) }}
+            onClick={minusClickHandler}
           >
             -
           </Button>
@@ -49,7 +55,7 @@ const CartProduct = ({ product, initialQuantity, updateCart, removeItem }: Produ
         <Grid item xs={4}>
           <Button
             variant="outlined"
-            onClick={() => { quantity < inventory ? setQuantity(quantity + 1) : setQuantity(inventory) }}
+            onClick={plusClickHandler}
           >
             +
           </Button>
