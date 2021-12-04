@@ -100,6 +100,7 @@ export interface PaymentFormInputs {
 }
 
 export interface MongoOrder {
+  _id: string;
   firstName: string;
   lastName: string;
   email: string;

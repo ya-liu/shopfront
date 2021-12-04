@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
 import { MongoOrder } from '../interfaces';
 import Container from '@mui/material/Container';
@@ -28,6 +28,10 @@ export default function MyOrder() {
     axios.get(`api/order/?email=${email}`)
       .then((res) => setOrders(res.data))
       .catch((error) => console.error(error))
+  }
+
+  const makeReadableAddress = (...args: string[]): string => {
+    return args.join(', ');
   }
 
   useEffect(() => {
@@ -60,19 +64,38 @@ export default function MyOrder() {
           </Button>
         </Grid>
       </Grid>
-      <Grid container spacing={2}>
-        {orders.length > 0 ?
-         (<Grid item xs={12} sm={6}>
-          <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
-            Shipping
-          </Typography>
-          <Typography gutterBottom>{orders[0].firstName.concat(' ', orders[0].lastName)}</Typography>
-          <Typography gutterBottom>{orders[0].address1}</Typography>
+      {orders.length > 0 ?
+        (<Grid container spacing={3}>
+          <Grid item xs={12} sm={6}>
+            <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
+              Shipping Info
+            </Typography>
+            {orders.map((order) => (
+              <Fragment key={order._id}>
+                <Typography gutterBottom>{order.firstName.concat(' ', order.lastName)}</Typography>
+                <Typography gutterBottom>{order.address2 ? makeReadableAddress(order.address1, order.address2, order.city, order.state, order.zip, order.state) : makeReadableAddress(order.address1, order.city, order.state, order.zip, order.state)}</Typography>
+              </Fragment>
+            ))}
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
+              Order Info
+            </Typography>
+            {orders.map((order) => (
+              <Fragment key={order._id}>
+                {order.orderContent.map((content) => (
+                  <Fragment key={content.item}>
+                    <Typography gutterBottom>{content.item}</Typography>
+                    <Typography gutterBottom>Quantity: {content.quantity}</Typography>
+                  </Fragment>
+                ))}
+              </Fragment>
+            ))}
+          </Grid>
         </Grid>)
         : (
           <></>
         )}
-      </Grid>
     </Container>
   );
 }
