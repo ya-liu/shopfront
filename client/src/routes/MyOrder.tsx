@@ -42,6 +42,7 @@ export default function MyOrder() {
       <Typography component="h2" variant="h4" align="center" gutterBottom>
         Manage My Orders
       </Typography>
+      <br />
       <Grid container>
         <Grid item sm={10}>
           <TextField
@@ -66,7 +67,7 @@ export default function MyOrder() {
       {orders.length > 0 ?
         orders.map((order: MongoOrder) => (
           <Fragment key={order._id}>
-            <Grid container spacing={3}>
+            <Grid container rowSpacing={1} columnSpacing={2} sx={{ borderBottom: 0.5, borderColor: 'text.primary' }}>
               <Grid item xs={12} sm={6}>
                 <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
                   Shipping Info
@@ -84,6 +85,12 @@ export default function MyOrder() {
                     <Typography gutterBottom>Quantity: {content.quantity}</Typography>
                   </Fragment>
                 ))}
+              </Grid>
+              <Grid item xs={6}>
+                <Button>Edit Order</Button>
+              </Grid>
+              <Grid item xs={6}>
+                <Button>Delete Order</Button>
               </Grid>
             </Grid>
           </Fragment>

@@ -37,6 +37,7 @@ export default function Home({ products, addToCart }: HomeProps) {
       <Typography component="h2" variant="h4" align="center" gutterBottom>
         Welcome to the shop!
       </Typography>
+      <br />
       <Grid container>
         <Grid item sm={10}>
           <TextField
