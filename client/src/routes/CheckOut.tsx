@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from 'axios';
 import { CartInfo, AddressFormInputs, PaymentFormInputs } from '../interfaces';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -39,6 +40,7 @@ export default function Checkout({ cart, total }: CheckoutProps) {
     lastName: '',
     email: '',
     address1: '',
+    address2: '',
     city: '',
     state: '',
     zip: '',
@@ -81,8 +83,31 @@ export default function Checkout({ cart, total }: CheckoutProps) {
     });
   }
 
-  const handleOrderSubmit = (): void => {
-    console.log(shippingInfo)
+  const handleNewOrder = (): void => {
+    const { firstName, lastName, email, address1, address2, city, state, zip, country } = shippingInfo;
+    const cartForDB = cart.map((entry) => {
+      return {
+        item: entry.item.title,
+        quantity: entry.quantity
+      }
+    });
+
+    const body = {
+      firstName,
+      lastName,
+      email,
+      address1,
+      address2,
+      city,
+      state,
+      zip,
+      country,
+      orderContent: cartForDB
+    };
+    // console.log(body);
+    axios.post(`/api/orders`, body)
+      .then((res) => console.log(res))
+      .catch((error) => console.error(error))
   };
 
   return (
@@ -123,7 +148,7 @@ export default function Checkout({ cart, total }: CheckoutProps) {
                   {activeStep === steps.length - 1 ?
                     (<Button
                       variant="contained"
-                      onClick={handleOrderSubmit}
+                      onClick={handleNewOrder}
                       sx={{ mt: 3, ml: 1 }}
                     >
                       Place Order
