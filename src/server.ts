@@ -33,7 +33,7 @@ app.get('/api/products', productController.getProducts);
 // Order related routes
 app.get('/api/orders', orderController.getOrders);
 
-app.get('/api/order', orderController.getOneOrder);
+app.get('/api/order/', orderController.getOneOrder);
 
 app.post('/api/orders', orderController.addOrder);
 
@@ -41,6 +41,7 @@ app.put('/api/orders/:id', orderController.updateOrder);
 
 app.delete('/api/orders/:id', orderController.deleteOrder);
 
-app.listen(PORT, () => {
+app.listen(process.env.PORT || PORT, () => {
   console.log(`Server listening on port ${PORT}`);
+  // console.log(`Server listening on port ${process.env.PORT}`);
 });
