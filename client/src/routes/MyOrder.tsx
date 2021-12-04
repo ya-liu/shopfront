@@ -73,7 +73,7 @@ export default function MyOrder() {
                   Shipping Info
                 </Typography>
                 <Typography gutterBottom>{order.firstName.concat(' ', order.lastName)}</Typography>
-                <Typography gutterBottom>{order.address2 ? makeReadableAddress(order.address1, order.address2, order.city, order.state, order.zip, order.state) : makeReadableAddress(order.address1, order.city, order.state, order.zip, order.state)}</Typography>
+                <Typography gutterBottom>{order.address2 ? makeReadableAddress(order.address1, order.address2, order.city, order.state, order.zip, order.country) : makeReadableAddress(order.address1, order.city, order.state, order.zip, order.country)}</Typography>
               </Grid>
               <Grid item xs={12} sm={6}>
                 <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
@@ -82,7 +82,7 @@ export default function MyOrder() {
                 {order.orderContent.map((content) => (
                   <Fragment key={content.item}>
                     <Typography gutterBottom>{content.item}</Typography>
-                    <Typography gutterBottom>Quantity: {content.quantity}</Typography>
+                    <Typography gutterBottom variant="body2" color="text.secondary">Quantity: {content.quantity}</Typography>
                   </Fragment>
                 ))}
               </Grid>
