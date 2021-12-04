@@ -75,7 +75,7 @@ export const deleteOrder = async (req: Request, res: Response): Promise<void> =>
     const deletedOrder: OrderDocument | null = await Order.findByIdAndDelete(req.params.id);
 
     res.status(200).json({
-      message: 'Order deleted',
+      message: `Order ${req.params.id} deleted`,
       deleteOrder: deletedOrder
     });
   } catch (error) {

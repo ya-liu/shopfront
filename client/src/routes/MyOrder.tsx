@@ -33,6 +33,13 @@ export default function MyOrder() {
       .catch((error) => console.error(error))
   }
 
+  const deleteOrder = (orderId: string): void => {
+    axios.delete(`api/orders/${orderId}`)
+      .then((res) => console.log(res.data.message))
+      .then(() => searchForOrder(orderQuery))
+      .catch((error) => console.error(error))
+  }
+
   const makeReadableAddress = (...args: string[]): string => {
     return args.join(', ');
   }
@@ -90,7 +97,7 @@ export default function MyOrder() {
                 <Button>Edit Order</Button>
               </Grid>
               <Grid item xs={6}>
-                <Button>Delete Order</Button>
+                <Button onClick={() => deleteOrder(order._id)}>Delete Order</Button>
               </Grid>
             </Grid>
           </Fragment>
