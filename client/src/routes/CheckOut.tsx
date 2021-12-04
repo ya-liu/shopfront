@@ -106,7 +106,12 @@ export default function Checkout({ cart, total }: CheckoutProps) {
     };
     // console.log(body);
     axios.post(`/api/orders`, body)
-      .then((res) => console.log(res.data))
+      .then((res) => {
+        if (res.data === 'Failed to submit order') {
+          alert(`Please enter all relevant fields in the form!`)
+        }
+      })
+      .then(() => handleNext())
       .catch((error) => console.error(error))
   };
 
@@ -131,7 +136,7 @@ export default function Checkout({ cart, total }: CheckoutProps) {
                   Thank you for your order.
                 </Typography>
                 <Typography variant="subtitle1">
-                  Your order number is #2001539. We have emailed your order
+                  Your order number is #{Math.floor(Math.random() * 10000 + 10000)}. We have emailed your order
                   confirmation, and will send you an update when your order has
                   shipped.
                 </Typography>
