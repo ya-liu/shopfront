@@ -95,7 +95,7 @@ export default function MyOrder() {
                 ))}
               </Grid>
               <Grid item xs={6}>
-                <EditOrderModal />
+                <EditOrderModal order={order} />
               </Grid>
               <Grid item xs={6}>
                 <Button onClick={() => deleteOrder(order._id)}>Delete Order</Button>

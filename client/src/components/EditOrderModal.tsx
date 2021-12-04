@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { MongoOrder } from '../interfaces';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
@@ -9,14 +10,19 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  minWidth: 375,
+  maxWidth: 600,
   bgcolor: 'background.paper',
-  border: '2px solid #000',
+  border: '1px solid #282c34',
   boxShadow: 24,
   p: 4,
 };
 
-export default function EditOrderModal() {
+type EditOrderModalProps = {
+  order: MongoOrder;
+}
+
+export default function EditOrderModal({ order }: EditOrderModalProps) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -27,8 +33,8 @@ export default function EditOrderModal() {
       <Modal
         open={open}
         onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+        aria-labelledby="modal-edit-order"
+        aria-describedby="modal-edit-order-form"
       >
         <Grid container sx={style}>
           <Grid item>
