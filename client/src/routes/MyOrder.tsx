@@ -1,6 +1,7 @@
 import { useState, Fragment } from 'react';
 import axios from 'axios';
 import { MongoOrder } from '../interfaces';
+import EditOrderModal from '../components/EditOrderModal';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
@@ -94,7 +95,7 @@ export default function MyOrder() {
                 ))}
               </Grid>
               <Grid item xs={6}>
-                <Button>Edit Order</Button>
+                <EditOrderModal />
               </Grid>
               <Grid item xs={6}>
                 <Button onClick={() => deleteOrder(order._id)}>Delete Order</Button>
