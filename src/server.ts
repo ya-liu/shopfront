@@ -33,6 +33,8 @@ app.get('/api/products', productController.getProducts);
 // Order related routes
 app.get('/api/orders', orderController.getOrders);
 
+app.get('/api/order', orderController.getOneOrder);
+
 app.post('/api/orders', orderController.addOrder);
 
 app.put('/api/orders/:id', orderController.updateOrder);

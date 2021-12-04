@@ -2,9 +2,19 @@ import mongoose from 'mongoose';
 
 // 1. Create an interface representing a document in MongoDB.
 export interface OrderDocument extends mongoose.Document {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
-  address: string;
+  address1: string;
+  address2?: string;
+  city: string;
+  state: string;
+  zip: string;
+  country: string;
+  orderContent: ItemDetail[];
+}
+
+interface ItemDetail {
   item: string;
   quantity: number;
 }
@@ -12,11 +22,19 @@ export interface OrderDocument extends mongoose.Document {
 // 2. Create a Schema corresponding to the document interface.
 const orderSchema = new mongoose.Schema<OrderDocument>(
   {
-    name: { type: String, required: true },
+    firstName: { type: String, required: true },
+    lastName: { type: String, required: true },
     email: { type: String, required: true, unique: true },
-    address: { type: String, required: true },
-    item: { type: String, required: true },
-    quantity: { type: Number, required: true }
+    address1: { type: String, required: true },
+    address2: { type: String },
+    city: { type: String, required: true },
+    state: { type: String, required: true },
+    zip: { type: String, required: true },
+    country: { type: String, required: true },
+    orderContent: [{
+      item: { type: String, required: true },
+      quantity: { type: Number, required: true },
+    }]
   },
   { timestamps: true },
 );

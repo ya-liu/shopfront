@@ -10,9 +10,19 @@ export const getOrders = async (req: Request, res: Response): Promise<void> => {
   }
 }
 
+export const getOneOrder = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { email } = req.query;
+    const order: OrderDocument = await Order.find({ 'email': email });
+    res.status(200).json(order);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export const addOrder = async (req: Request, res: Response): Promise<void> => {
   try {
-    const body = req.body as Pick<OrderDocument, 'name' | 'email' | 'address' | 'item' | 'quantity'>
+    const { body } = req.body;
 
     const order: OrderDocument = new Order({
       name: body.name,
