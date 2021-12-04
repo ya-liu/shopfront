@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { CartInfo, AddressFormInputs, PaymentFormInputs } from '../interfaces';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -52,10 +52,10 @@ export default function Checkout({ cart, total }: CheckoutProps) {
     expDate: '',
   })
 
-  useEffect(() => {
-    console.log(shippingInfo);
-    console.log(paymentInfo)
-  }, [shippingInfo, paymentInfo])
+  // useEffect(() => {
+  //   console.log(shippingInfo);
+  //   console.log(paymentInfo)
+  // }, [shippingInfo, paymentInfo])
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);

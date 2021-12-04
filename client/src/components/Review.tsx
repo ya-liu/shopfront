@@ -6,13 +6,6 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
 
-const payments = [
-  { name: 'Card type', detail: 'Visa' },
-  { name: 'Card holder', detail: 'Mr John Smith' },
-  { name: 'Card number', detail: 'xxxx-xxxx-xxxx-1234' },
-  { name: 'Expiry date', detail: '04/2024' },
-];
-
 type ReviewProps = {
   cart: CartInfo[];
   total: number;
@@ -25,8 +18,8 @@ export default function Review({ cart, total, shippingInfo, paymentInfo }: Revie
   let address;
   !shippingInfo.address2 ? address = [address1, city, state, zip, country] : address = [address1, address2, city, state, zip, country];
 
-  // const { cardNumber } = paymentInfo;
-  // const displayNumber = cardNumber.slice(-4);
+  const { cardName, cardNumber, expDate } = paymentInfo;
+  const displayNumber = cardNumber.slice(-4);
 
   return (
     <React.Fragment>
@@ -60,16 +53,24 @@ export default function Review({ cart, total, shippingInfo, paymentInfo }: Revie
             Payment details
           </Typography>
           <Grid container>
-            {payments.map((payment) => (
-              <React.Fragment key={payment.name}>
-                <Grid item xs={6}>
-                  <Typography gutterBottom>{payment.name}</Typography>
-                </Grid>
-                <Grid item xs={6}>
-                  <Typography gutterBottom>{payment.detail}</Typography>
-                </Grid>
-              </React.Fragment>
-            ))}
+            <Grid item xs={6}>
+              <Typography gutterBottom>Card Holder Name</Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography gutterBottom>{cardName}</Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography gutterBottom>Last 4 digits:</Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography gutterBottom>{displayNumber}</Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography gutterBottom>Expiry Date</Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <Typography gutterBottom>{expDate}</Typography>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
