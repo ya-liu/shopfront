@@ -1,4 +1,4 @@
-import { useState, useEffect, Fragment } from 'react';
+import { useState, Fragment } from 'react';
 import axios from 'axios';
 import { MongoOrder } from '../interfaces';
 import Container from '@mui/material/Container';
@@ -11,7 +11,6 @@ type OrderQuery = string;
 
 export default function MyOrder() {
   const [orderQuery, setOrderQuery] = useState<OrderQuery>('');
-  const [finalQuery, setFinalQuery] = useState<OrderQuery>('');
   const [orders, setOrders] = useState<MongoOrder[]>([]);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -19,8 +18,6 @@ export default function MyOrder() {
   }
 
   const onSubmit = (): void => {
-    // e.preventDefault();
-    setFinalQuery(orderQuery);
     searchForOrder(orderQuery);
   }
 
@@ -34,10 +31,10 @@ export default function MyOrder() {
     return args.join(', ');
   }
 
-  useEffect(() => {
-    console.log(finalQuery);
-    console.log(orders);
-  }, [finalQuery, orders])
+  // useEffect(() => {
+  //   console.log(finalQuery);
+  //   console.log(orders);
+  // }, [finalQuery, orders])
 
   return (
     <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
