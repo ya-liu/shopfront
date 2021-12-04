@@ -84,30 +84,35 @@ export default function EditOrderModal({ order }: EditOrderModalProps) {
             </Typography>
           </Grid>
           <Grid item xs={12} >
-            <Typography id="modal-modal-description" sx={{ mb: 2 }}>
+            <Typography id="modal-modal-description">
               Please fill out all content in the form.
             </Typography>
           </Grid>
           <SharedAddressForm handleShippingForm={handleShippingForm} />
-          <Grid container>
-            <Grid item xs={12} sm={6}>
-              <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
-                Order Info
-              </Typography>
-              {order.orderContent.map((content) => (
+          <Grid container direction="column">
+            <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
+              Order Info
+            </Typography>
+            {order.orderContent.map((content) => (
+              <Grid container justifyContent="space-between">
                 <Fragment key={content._id}>
-                  <Typography>{content.item}</Typography>
-                  <Typography variant="body2" color="text.secondary">Quantity: {content.quantity}</Typography>
-                  <TextField
-                    variant="outlined"
-                    size="small"
-                    label="Update Quantity"
-                    name="quantity"
-                    onChange={(e) => handleContentEdit(e, content._id)}
-                  />
+                  <Grid item>
+                    <Typography>{content.item}</Typography>
+                    <Typography variant="body2" color="text.secondary">Quantity: {content.quantity}</Typography>
+                  </Grid>
+                  <Grid item>
+                    <TextField
+                      variant="outlined"
+                      size="small"
+                      label="Update Quantity"
+                      helperText="Enter 0 to remove item from the order"
+                      name="quantity"
+                      onChange={(e) => handleContentEdit(e, content._id)}
+                    />
+                  </Grid>
                 </Fragment>
-              ))}
-            </Grid>
+              </Grid>
+            ))}
           </Grid>
           <Grid container justifyContent="flex-end" spacing={2} sx={{ mt: 1 }}>
             <Grid item>
