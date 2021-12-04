@@ -37,11 +37,6 @@ export default function MyOrder() {
     return args.join(', ');
   }
 
-  // useEffect(() => {
-  //   console.log(finalQuery);
-  //   console.log(orders);
-  // }, [finalQuery, orders])
-
   return (
     <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
       <Typography component="h2" variant="h4" align="center" gutterBottom>
@@ -69,34 +64,30 @@ export default function MyOrder() {
         </Grid>
       </Grid>
       {orders.length > 0 ?
-        (<Grid container spacing={3}>
-          <Grid item xs={12} sm={6}>
-            <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
-              Shipping Info
-            </Typography>
-            {orders.map((order) => (
-              <Fragment key={order._id}>
+        orders.map((order: MongoOrder) => (
+          <Fragment key={order._id}>
+            <Grid container spacing={3}>
+              <Grid item xs={12} sm={6}>
+                <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
+                  Shipping Info
+                </Typography>
                 <Typography gutterBottom>{order.firstName.concat(' ', order.lastName)}</Typography>
                 <Typography gutterBottom>{order.address2 ? makeReadableAddress(order.address1, order.address2, order.city, order.state, order.zip, order.state) : makeReadableAddress(order.address1, order.city, order.state, order.zip, order.state)}</Typography>
-              </Fragment>
-            ))}
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
-              Order Info
-            </Typography>
-            {orders.map((order) => (
-              <Fragment key={order._id}>
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
+                  Order Info
+                </Typography>
                 {order.orderContent.map((content) => (
                   <Fragment key={content.item}>
                     <Typography gutterBottom>{content.item}</Typography>
                     <Typography gutterBottom>Quantity: {content.quantity}</Typography>
                   </Fragment>
                 ))}
-              </Fragment>
-            ))}
-          </Grid>
-        </Grid>)
+              </Grid>
+            </Grid>
+          </Fragment>
+        ))
         : (
           <></>
         )}
