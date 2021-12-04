@@ -58,10 +58,8 @@ export default function EditOrderModal({ order }: EditOrderModalProps) {
   const handleUpdate = (orderId: string): void => {
     let body = JSON.parse(JSON.stringify(shippingInfo));
     body.orderContent = newContent;
-    console.log(body);
 
     axios.put(`api/orders/${orderId}`, body)
-      .then((res) => console.log(res.data))
       .then(() => handleClose())
       .catch((error) => console.error(error))
   }

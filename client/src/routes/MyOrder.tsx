@@ -54,8 +54,10 @@ export default function MyOrder() {
 
   const deleteOrder = (orderId: string): void => {
     axios.delete(`api/orders/${orderId}`)
-      .then((res) => console.log(res.data.message))
-      .then(() => searchForOrder(orderQuery))
+      .then(() => {
+        handleClose();
+        searchForOrder(orderQuery);
+      })
       .catch((error) => console.error(error))
   }
 
