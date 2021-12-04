@@ -21,6 +21,12 @@ export default function MyOrder() {
     searchForOrder(orderQuery);
   }
 
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLDivElement>): void => {
+    if (e.key === 'Enter') {
+      onSubmit();
+    };
+  }
+
   const searchForOrder = (email: string): void => {
     axios.get(`api/order/?email=${email}`)
       .then((res) => setOrders(res.data))
@@ -49,6 +55,7 @@ export default function MyOrder() {
             fullWidth
             label="Enter your email"
             onChange={onChange}
+            onKeyPress={handleKeyPress}
           />
         </Grid>
         <Grid item sm={2}>

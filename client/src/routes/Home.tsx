@@ -45,7 +45,7 @@ export default function Home({ products, addToCart }: HomeProps) {
             fullWidth
             label="Search for a product"
             onChange={onChange}
-            onKeyPress={(e) => handleKeyPress(e)}
+            onKeyPress={handleKeyPress}
           />
         </Grid>
         <Grid item sm={2}>
