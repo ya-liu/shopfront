@@ -1,7 +1,8 @@
-import { useState } from 'react';
-import { AddressFormInputs, MongoOrder } from '../interfaces';
+import { useState, Fragment } from 'react';
+import { AddressFormInputs, MongoOrder, ItemDetail } from '../interfaces';
 import SharedAddressForm from './SharedAddressForm';
 import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Grid from '@mui/material/Grid';
@@ -40,6 +41,8 @@ export default function EditOrderModal({ order }: EditOrderModalProps) {
     country: '',
   });
 
+  const [newContent, setNewContent] = useState<ItemDetail[]>(order.orderContent);
+
   const handleShippingForm = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target;
     setShippingInfo({
@@ -48,8 +51,21 @@ export default function EditOrderModal({ order }: EditOrderModalProps) {
     });
   };
 
+  const handleContentEdit = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, id: string): void => {
+    const { value } = e.target;
+    const copy = newContent.slice();
+    copy.forEach((entry) => {
+      if (entry._id === id) {
+        entry.quantity = Number(value);
+      }
+    })
+    setNewContent(copy);
+  };
+
+
   const handleSubmit = (): void => {
     console.log(shippingInfo);
+    console.log(newContent);
   }
 
   return (
@@ -73,6 +89,26 @@ export default function EditOrderModal({ order }: EditOrderModalProps) {
             </Typography>
           </Grid>
           <SharedAddressForm handleShippingForm={handleShippingForm} />
+          <Grid container>
+            <Grid item xs={12} sm={6}>
+              <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
+                Order Info
+              </Typography>
+              {order.orderContent.map((content) => (
+                <Fragment key={content._id}>
+                  <Typography>{content.item}</Typography>
+                  <Typography variant="body2" color="text.secondary">Quantity: {content.quantity}</Typography>
+                  <TextField
+                    variant="outlined"
+                    size="small"
+                    label="Update Quantity"
+                    name="quantity"
+                    onChange={(e) => handleContentEdit(e, content._id)}
+                  />
+                </Fragment>
+              ))}
+            </Grid>
+          </Grid>
           <Grid container justifyContent="flex-end" spacing={2} sx={{ mt: 1 }}>
             <Grid item>
               <Button onClick={handleSubmit}>Submit</Button>
