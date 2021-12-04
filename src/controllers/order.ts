@@ -66,7 +66,7 @@ export const updateOrder = async (req: Request, res: Response): Promise<void> =>
     });
   } catch (error) {
     console.error(error);
-    res.end();
+    res.end('Failed to update order');
   };
 }
 

@@ -1,5 +1,6 @@
 import { useState, Fragment } from 'react';
-import { AddressFormInputs, MongoOrder, ItemDetail } from '../interfaces';
+import axios from 'axios';
+import { MongoOrder, ItemDetail } from '../interfaces';
 import SharedAddressForm from './SharedAddressForm';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -29,26 +30,18 @@ export default function EditOrderModal({ order }: EditOrderModalProps) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const [shippingInfo, setShippingInfo] = useState<AddressFormInputs>({
-    firstName: '',
-    lastName: '',
-    email: '',
-    address1: '',
-    address2: '',
-    city: '',
-    state: '',
-    zip: '',
-    country: '',
-  });
+  const [shippingInfo, setShippingInfo] = useState({});
 
   const [newContent, setNewContent] = useState<ItemDetail[]>(order.orderContent);
 
   const handleShippingForm = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target;
-    setShippingInfo({
-      ...shippingInfo,
-      [name]: value
-    });
+    if (!!value) {
+      setShippingInfo({
+        ...shippingInfo,
+        [name]: value
+      });
+    }
   };
 
   const handleContentEdit = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, id: string): void => {
@@ -62,10 +55,15 @@ export default function EditOrderModal({ order }: EditOrderModalProps) {
     setNewContent(copy);
   };
 
+  const handleUpdate = (orderId: string): void => {
+    let body = JSON.parse(JSON.stringify(shippingInfo));
+    body.orderContent = newContent;
+    console.log(body);
 
-  const handleSubmit = (): void => {
-    console.log(shippingInfo);
-    console.log(newContent);
+    axios.put(`api/orders/${orderId}`, body)
+      .then((res) => console.log(res.data))
+      .then(() => handleClose())
+      .catch((error) => console.error(error))
   }
 
   return (
@@ -85,7 +83,7 @@ export default function EditOrderModal({ order }: EditOrderModalProps) {
           </Grid>
           <Grid item xs={12} >
             <Typography id="modal-modal-description">
-              Please fill out all content in the form.
+              Please fill out all areas of the form.
             </Typography>
           </Grid>
           <SharedAddressForm handleShippingForm={handleShippingForm} />
@@ -94,8 +92,8 @@ export default function EditOrderModal({ order }: EditOrderModalProps) {
               Order Info
             </Typography>
             {order.orderContent.map((content) => (
-              <Grid container justifyContent="space-between">
-                <Fragment key={content._id}>
+              <Fragment key={content._id}>
+                <Grid container justifyContent="space-between">
                   <Grid item>
                     <Typography>{content.item}</Typography>
                     <Typography variant="body2" color="text.secondary">Quantity: {content.quantity}</Typography>
@@ -110,13 +108,13 @@ export default function EditOrderModal({ order }: EditOrderModalProps) {
                       onChange={(e) => handleContentEdit(e, content._id)}
                     />
                   </Grid>
-                </Fragment>
-              </Grid>
+                </Grid>
+              </Fragment>
             ))}
           </Grid>
           <Grid container justifyContent="flex-end" spacing={2} sx={{ mt: 1 }}>
             <Grid item>
-              <Button onClick={handleSubmit}>Submit</Button>
+              <Button onClick={() => handleUpdate(order._id)}>Submit</Button>
             </Grid>
             <Grid item>
               <Button onClick={handleClose}>Cancel</Button>
