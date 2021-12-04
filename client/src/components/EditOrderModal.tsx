@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { MongoOrder } from '../interfaces';
+import { AddressFormInputs, MongoOrder } from '../interfaces';
+import SharedAddressForm from './SharedAddressForm';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
@@ -27,6 +28,26 @@ export default function EditOrderModal({ order }: EditOrderModalProps) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const [shippingInfo, setShippingInfo] = useState<AddressFormInputs>({
+    firstName: '',
+    lastName: '',
+    email: '',
+    address1: '',
+    address2: '',
+    city: '',
+    state: '',
+    zip: '',
+    country: '',
+  });
+
+  const handleShippingForm = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const { name, value } = e.target;
+    setShippingInfo({
+      ...shippingInfo,
+      [name]: value
+    });
+  };
+
   return (
     <div>
       <Button onClick={handleOpen}>Edit Order</Button>
@@ -39,14 +60,15 @@ export default function EditOrderModal({ order }: EditOrderModalProps) {
         <Grid container sx={style}>
           <Grid item>
             <Typography id="modal-modal-title" variant="h6" component="h2">
-              Text in a modal
+              Update your order here
             </Typography>
           </Grid>
-          <Grid>
+          <Grid item>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+              Please fill out all content in the form.
             </Typography>
           </Grid>
+          <SharedAddressForm handleShippingForm={handleShippingForm} />
         </Grid>
       </Modal>
     </div>

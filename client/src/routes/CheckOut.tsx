@@ -45,7 +45,6 @@ export default function Checkout({ cart, total }: CheckoutProps) {
     state: '',
     zip: '',
     country: '',
-    saveAddress: '',
   });
 
   const [paymentInfo, setPaymentInfo] = useState<PaymentFormInputs>({

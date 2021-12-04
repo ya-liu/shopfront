@@ -90,7 +90,6 @@ export interface AddressFormInputs {
   state: string;
   zip: string;
   country: string;
-  saveAddress: string;
 }
 
 export interface PaymentFormInputs {
