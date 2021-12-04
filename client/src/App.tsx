@@ -33,11 +33,10 @@ const App = ({ products }: AppProps) => {
   }, [cart])
 
   useEffect(() => {
-    updateTotal();
     console.log('in useEffect');
-
+    updateTotal();
     window.localStorage.setItem('cart', JSON.stringify(cart));
-  }, [cart, totalAmount, updateTotal])
+  }, [cart, updateTotal])
 
   const findInCart = (product: ShopifyProduct): number => {
     let found = cart.findIndex(entry => entry.item.id === product.id);
@@ -66,6 +65,7 @@ const App = ({ products }: AppProps) => {
     let item = {...cart[found]};
     item.quantity = quantity;
     copy[found] = item;
+    console.log(copy[0]);
 
     setCart(copy);
   }
@@ -85,7 +85,7 @@ const App = ({ products }: AppProps) => {
         <Route index element={<Home products={products} addToCart={addToCart} />} />
         <Route path="catalog" element={<Catalog products={products} addToCart={addToCart} />} />
         <Route path="about" element={<About />} />
-        <Route path="cart" element={<Cart cart={cart} updateCart={updateCart} removeItem={removeItem} totalAmount={totalAmount} updateTotal={updateTotal} />} />
+        <Route path="cart" element={<Cart cart={cart} updateCart={updateCart} removeItem={removeItem} totalAmount={totalAmount} />} />
         <Route path="checkout" element={<Checkout cart={cart} total={totalAmount} />} />
         <Route path="orders" element={<MyOrder />} />
         <Route path="*" element={<NoMatch />} />

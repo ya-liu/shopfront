@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Product from './Product';
 import { ShopifyProduct } from '../interfaces';
 import Grid from '@mui/material/Grid';
@@ -15,6 +15,10 @@ type ProductProps = {
 const CartProduct = ({ product, initialQuantity, updateCart, removeItem }: ProductProps): JSX.Element => {
   const [quantity, setQuantity] = useState(initialQuantity);
   const inventory = product.variants[0].inventory_quantity;
+
+  useEffect(() => {
+    console.log(quantity);
+  }, [quantity])
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setQuantity(Number(e.target.value));
