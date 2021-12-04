@@ -23,8 +23,13 @@ export default function Home({ products, addToCart }: HomeProps) {
   }
 
   const onSubmit = (): void => {
-    // e.preventDefault();
     setFinalQuery(productQuery);
+  }
+
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLDivElement>): void => {
+    if (e.key === 'Enter') {
+      onSubmit();
+    };
   }
 
   return (
@@ -40,6 +45,7 @@ export default function Home({ products, addToCart }: HomeProps) {
             fullWidth
             label="Search for a product"
             onChange={onChange}
+            onKeyPress={(e) => handleKeyPress(e)}
           />
         </Grid>
         <Grid item sm={2}>
