@@ -13,9 +13,10 @@ export const getOrders = async (req: Request, res: Response): Promise<void> => {
 
 export const getOneOrder = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { email } = req.query;
-    const order: OrderDocument[] = await Order.find();
-    res.status(200).json(order);
+    const email = req.query.email;
+
+    const orders: OrderDocument[] = await Order.find({ email: "Ron@hp.com" });
+    res.status(200).json(orders);
   } catch (error) {
     console.error(error);
     res.end();
