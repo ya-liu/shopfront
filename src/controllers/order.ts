@@ -43,8 +43,8 @@ export const addOrder = async (req: Request, res: Response): Promise<void> => {
       orderContent: body.orderContent,
     })
     const newOrder: OrderDocument = await order.save();
-    const allOrders: OrderDocument[] = await Order.find();
-    res.status(201).json({ message: 'New Order In', order: newOrder, orders: allOrders })
+    // const allOrders: OrderDocument[] = await Order.find();
+    res.status(201).json({ message: 'New Order In', order: newOrder })
   } catch (error) {
     console.error(error);
     res.end('Failed to submit order');

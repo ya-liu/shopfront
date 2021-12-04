@@ -106,7 +106,7 @@ export default function Checkout({ cart, total }: CheckoutProps) {
     };
     // console.log(body);
     axios.post(`/api/orders`, body)
-      .then((res) => console.log(res))
+      .then((res) => console.log(res.data))
       .catch((error) => console.error(error))
   };
 
