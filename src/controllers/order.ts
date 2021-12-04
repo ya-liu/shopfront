@@ -57,11 +57,12 @@ export const updateOrder = async (req: Request, res: Response): Promise<void> =>
       params: { id },
       body,
     } = req;
-    await Order.findByIdAndUpdate(id, body);
+    const originalOrder = await Order.findByIdAndUpdate(id, body);
     const updatedOrder: OrderDocument | null = await Order.findById(id);
     res.status(200).json({
       message: 'Order updated',
-      updatedOrder
+      updatedOrder,
+      originalOrder
     });
   } catch (error) {
     console.error(error);
