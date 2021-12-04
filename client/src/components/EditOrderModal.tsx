@@ -48,6 +48,10 @@ export default function EditOrderModal({ order }: EditOrderModalProps) {
     });
   };
 
+  const handleSubmit = (): void => {
+    console.log(shippingInfo);
+  }
+
   return (
     <div>
       <Button onClick={handleOpen}>Edit Order</Button>
@@ -57,18 +61,26 @@ export default function EditOrderModal({ order }: EditOrderModalProps) {
         aria-labelledby="modal-edit-order"
         aria-describedby="modal-edit-order-form"
       >
-        <Grid container sx={style}>
+        <Grid container sx={style} rowSpacing={2}>
           <Grid item>
             <Typography id="modal-modal-title" variant="h6" component="h2">
               Update your order here
             </Typography>
           </Grid>
-          <Grid item>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          <Grid item xs={12} >
+            <Typography id="modal-modal-description" sx={{ mb: 2 }}>
               Please fill out all content in the form.
             </Typography>
           </Grid>
           <SharedAddressForm handleShippingForm={handleShippingForm} />
+          <Grid container justifyContent="flex-end" spacing={2} sx={{ mt: 1 }}>
+            <Grid item>
+              <Button onClick={handleSubmit}>Submit</Button>
+            </Grid>
+            <Grid item>
+              <Button onClick={handleClose}>Cancel</Button>
+            </Grid>
+          </Grid>
         </Grid>
       </Modal>
     </div>
