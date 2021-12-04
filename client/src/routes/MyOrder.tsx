@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { MongoOrder } from '../interfaces';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
@@ -11,7 +12,7 @@ type OrderQuery = string;
 export default function MyOrder() {
   const [orderQuery, setOrderQuery] = useState<OrderQuery>('');
   const [finalQuery, setFinalQuery] = useState<OrderQuery>('');
-  const [orders, setOrders] = useState([]);
+  const [orders, setOrders] = useState<MongoOrder[]>([]);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setOrderQuery(e.target.value);
@@ -58,6 +59,19 @@ export default function MyOrder() {
             Go!
           </Button>
         </Grid>
+      </Grid>
+      <Grid container spacing={2}>
+        {orders.length > 0 ?
+         (<Grid item xs={12} sm={6}>
+          <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
+            Shipping
+          </Typography>
+          <Typography gutterBottom>{orders[0].firstName.concat(' ', orders[0].lastName)}</Typography>
+          <Typography gutterBottom>{orders[0].address1}</Typography>
+        </Grid>)
+        : (
+          <></>
+        )}
       </Grid>
     </Container>
   );
