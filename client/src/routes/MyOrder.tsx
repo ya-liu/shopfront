@@ -4,15 +4,33 @@ import { MongoOrder } from '../interfaces';
 import EditOrderModal from '../components/EditOrderModal';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
+import Modal from '@mui/material/Modal';
+import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
 type OrderQuery = string;
 
+const style = {
+  position: 'absolute' as 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  minWidth: 375,
+  maxWidth: 600,
+  bgcolor: 'background.paper',
+  border: '1px solid #282c34',
+  boxShadow: 24,
+  p: 4,
+};
+
 export default function MyOrder() {
   const [orderQuery, setOrderQuery] = useState<OrderQuery>('');
   const [orders, setOrders] = useState<MongoOrder[]>([]);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setOrderQuery(e.target.value);
@@ -98,14 +116,31 @@ export default function MyOrder() {
                 <EditOrderModal order={order} />
               </Grid>
               <Grid item xs={6}>
-                <Button onClick={() => deleteOrder(order._id)}>Delete Order</Button>
+                <Button onClick={handleOpen}>Delete Order</Button>
+                <div>
+                  <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="modal-delete-order"
+                    aria-describedby="modal-delete-order-confirmation"
+                  >
+                    <Box sx={style}>
+                      <Typography id="modal-modal-title" variant="h6" component="h3" mb={2}>
+                        Are you sure you want to delete this order?
+                      </Typography>
+                      <Button onClick={() => deleteOrder(order._id)}>Yes</Button>
+                      <Button onClick={handleClose}>No</Button>
+                    </Box>
+                  </Modal>
+                </div>
               </Grid>
             </Grid>
           </Fragment>
         ))
         : (
           <></>
-        )}
-    </Container>
+        )
+      }
+    </Container >
   );
 }
