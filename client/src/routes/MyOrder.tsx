@@ -80,7 +80,7 @@ export default function MyOrder() {
                   Order Info
                 </Typography>
                 {order.orderContent.map((content) => (
-                  <Fragment key={content.item}>
+                  <Fragment key={content._id}>
                     <Typography gutterBottom>{content.item}</Typography>
                     <Typography gutterBottom variant="body2" color="text.secondary">Quantity: {content.quantity}</Typography>
                   </Fragment>

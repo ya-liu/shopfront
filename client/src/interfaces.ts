@@ -114,6 +114,7 @@ export interface MongoOrder {
 }
 
 export interface ItemDetail {
+  _id: string;
   item: string;
   quantity: number;
 }

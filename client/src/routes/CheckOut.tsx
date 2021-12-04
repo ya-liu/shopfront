@@ -109,9 +109,10 @@ export default function Checkout({ cart, total }: CheckoutProps) {
       .then((res) => {
         if (res.data === 'Failed to submit order') {
           alert(`Please enter all relevant fields in the form!`)
+        } else {
+          handleNext();
         }
       })
-      .then(() => handleNext())
       .catch((error) => console.error(error))
   };
 
