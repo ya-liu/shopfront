@@ -11,11 +11,13 @@ dotenv.config();
 
 const PORT = process.env.SERVER_PORT;
 
+const mongoURI = process.env.MONGODB_URI;
+
 const app = express();
 app.use(express.json());
 
 // 4. Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/shopfront')
+mongoose.connect('mongodb://localhost:27017/shopfront' || mongoURI)
   .then(() => { console.log('Connected to MongoDB') })
   .catch(err => {
     console.log(`MongoDB connection error. Please make sure MongoDB is running. ${err}`);
