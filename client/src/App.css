@@ -4,7 +4,9 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 20vh;
+  background-image: url("../src/brewing_espresso.jpeg");
+  background-size: cover;
+  min-height: 25vh;
   display: flex;
   flex-direction: column;
   align-items: center;
