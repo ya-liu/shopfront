@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
 
 // 4. Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/shopfront' || mongoURI)
+mongoose.connect(mongoURI || 'mongodb://localhost:27017/shopfront')
   .then(() => { console.log('Connected to MongoDB') })
   .catch(err => {
     console.log(`MongoDB connection error. Please make sure MongoDB is running. ${err}`);
