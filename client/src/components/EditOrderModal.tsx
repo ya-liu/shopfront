@@ -81,7 +81,7 @@ export default function EditOrderModal({ order }: EditOrderModalProps) {
           </Grid>
           <Grid item xs={12} >
             <Typography id="modal-modal-description">
-              Please fill out all areas of the form.
+              Type in any field you want to update!
             </Typography>
           </Grid>
           <SharedAddressForm handleShippingForm={handleShippingForm} />
