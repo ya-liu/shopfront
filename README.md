@@ -13,6 +13,24 @@
 
 An E-commerce web application to purchase items, powered by Shopify
 
+<p
+  align="center">
+  <img
+    alt="catalog and cart demo" src="client/demo/1_catalog_and_cart.gif">
+</p>
+
+<p
+  align="center">
+  <img
+    alt="checkout demo" src="client/demo/2_checkout.gif">
+</p>
+
+<p
+  align="center">
+  <img
+    alt="order management demo" src="client/demo/3_order_management.gif">
+</p>
+
 ## Deployed Link
 
 Hosted on AWS: [shop front](http://18.220.110.158/)
@@ -20,7 +38,7 @@ Hosted on AWS: [shop front](http://18.220.110.158/)
 ## JS Library/Framework
 
 The front-end framework for this project is React.js.
-The project utilized React hooks for more flexible development
+The project utilized React hooks for more flexible development.
 
 ## User Interactions
 
@@ -36,7 +54,7 @@ The project utilized React hooks for more flexible development
 
 - The user is able to search for orders with the email address used at the time of checkout.
 
-- After obtaining a list of previous orders, the user is able to update and delete each order.
+- After obtaining a list of orders, the user is able to update and delete each order.
 
 ## Backend service
 
@@ -48,7 +66,15 @@ The project utilized React hooks for more flexible development
 
 ## Overall Architecture
 
+- The root directory contains configuration files for the Express server and Node. `src` contains the server file and initiates the MongoDB connection.
 
+- `src/models` contains the MongoDB schema and interface for each order.
+
+- `src/controllers` contains server handler functions for each endpoint (create an order, get order, update one order, delete one order).
+
+- `client/src` contains all React components. `src/routes` includes all route components accessible in the app.
+
+- `client/src/controller` contains a component that handles the API call to the Shopify Admin API. The app only makes 1 API call. All routes and components display product information based on returned results.
 
 ## Third Party RESTful API
 
@@ -76,11 +102,13 @@ npm is the package management system for this project.
    npm install
    ```
 
-2. Create a `.env` file at the root directory
+2. Create a `.env` file in the root directory
 
    ```js
-   NODE_ENV=production OR development
+   # Set to production when deploying to production
+   NODE_ENV=development
 
+   # Node.js server configuration
    SERVER_PORT=YOUR_PREFERRED_PORT
 
    # Shopify API Variables
@@ -94,14 +122,15 @@ npm is the package management system for this project.
    MONGODB_URI=mongodb+srv://<YOUR_USERNAME>:<YOUR_PASSWORD>@<YOUR_CLUSTER>.ytgwd.mongodb.net/<YOUR_DATABASE>?retryWrites=true&w=majority
    ```
 
-3. Run production server
+3. Run production client
+
+   ```sh
+   cd client
+   npm run build
+   ```
+
+4. Run the production server
 
    ```sh
    npm run start
-   ```
-
-4. Run production client
-
-   ```sh
-   npm run build
    ```
