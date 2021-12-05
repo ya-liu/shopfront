@@ -13,7 +13,7 @@
 
 # misc
 .DS_Store
-config.js
+*.cer
 .env
 .env.local
 .env.development.local
