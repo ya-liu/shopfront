@@ -39,7 +39,7 @@ Hosted on AWS: [shop front](http://18.220.110.158/)
 
 The front-end framework for this project is React.js.
 
-The project is written with React hooks for more flexible development.
+The project is written with React functional components for more flexible development.
 
 ## User Interactions
 
