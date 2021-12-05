@@ -7,11 +7,9 @@
 ![react-router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
 ![node.js](https://img.shields.io/badge/Node.js-20232A?style=for-the-badge&logo=nodedotjs&logoColor=green)
 ![Express](https://img.shields.io/badge/-Express-20232A?style=for-the-badge&logo=express&logoColor=yellow)
-![mongodb](https://img.shields.io/badge/MongoDB-white?style=for-the-badge&logo=mongodb&logoColor=4EA94B)
+![mongodb](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
 ![AWS](https://img.shields.io/badge/Amazon_AWS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)
 ![postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=Postman&logoColor=white)
-
-An E-commerce web application to purchase items, powered by Shopify
 
 <p
   align="center">
@@ -30,6 +28,8 @@ An E-commerce web application to purchase items, powered by Shopify
   <img
     alt="order management demo" src="client/demo/3_order_management.gif">
 </p>
+
+An E-commerce web application to purchase items, powered by Shopify
 
 ## Deployed Link
 
@@ -75,9 +75,9 @@ The project is written with React hooks for more flexible development.
 
 - `src/controllers` contains server handler functions for each endpoint (create an order, get orders for an email, update one order, delete one order). In addition, `src/controllers/shopify.ts` makes the API call to Shopify REST Admin API.
 
-- `client/src` contains all React components. `src/routes` includes all route components accessible in the app.
+- `client/src` contains all React components. `client/src/routes` includes all route components accessible in the app.
 
-- `client/src/controller` contains a component that handles the API call to retrieve product data from the Express server. The app is optimized to make only 1 API call. All components that display product information use the returned results.
+- `client/src/controller` contains a controller component that handles the API call to retrieve product data from the Express server. The app is optimized to make only 1 API call. All components that display product information use the returned results.
 
 ## Third Party RESTful API
 
@@ -135,5 +135,16 @@ npm is the package management system for this project.
 4. Run the production server
 
    ```sh
+   npm run prestart
    npm run start
    ```
+
+5. To use the application in development mode
+
+   ```sh
+   npm run dev
+   cd client
+   npm run start
+   ```
+
+   In `client/src/.env`, set `NODE_ENV` to `development`.
