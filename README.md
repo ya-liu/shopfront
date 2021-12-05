@@ -10,6 +10,10 @@
 
 An E-commerce web application to purchase items, powered by Shopify
 
+## Deployed Link
+
+Hosted on AWS: ![shop front](http://3.16.15.35/)
+
 ## JS Library/Framework
 
 The front-end framework for this project is React.js.
