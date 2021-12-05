@@ -38,7 +38,8 @@ Hosted on AWS: [shop front](http://18.220.110.158/)
 ## JS Library/Framework
 
 The front-end framework for this project is React.js.
-The project utilized React hooks for more flexible development.
+
+The project is written with React hooks for more flexible development.
 
 ## User Interactions
 
@@ -48,7 +49,7 @@ The project utilized React hooks for more flexible development.
 
 - The user is able to add the product to cart and update product quantity in cart.
 
-- Cart content is stored in the browser, so the user is able to see items in the cart upon page refresh.
+- Cart content is stored in the browser, so the user is able to see items stored in the cart from a previous session.
 
 - The user is able to fill out an address form and payment information to complete the checkout process.
 
@@ -58,27 +59,29 @@ The project utilized React hooks for more flexible development.
 
 ## Backend service
 
-- An Express server written in Node.js powers the client and database interactions.
+- An Express server written in Node.js powers the interactions between the client and database. The server is also responsible for retrieving product data from the Shopify REST Admin API and sending the data to the client.
 
 - MongoDB is used as the database to store order information.
 
-- Each order contains the user's shipping information and purchase details regarding item and quantity. No payment information is currently stored.
+- Each order contains the user's shipping information and purchase details regarding item name and quantity. No payment information is currently stored.
 
 ## Overall Architecture
 
-- The root directory contains configuration files for the Express server and Node. `src` contains the server file and initiates the MongoDB connection.
+- The app is built with an MVC structure.
+
+- The root directory contains configuration files for the Express server. `src` contains the server file and initiates the MongoDB connection.
 
 - `src/models` contains the MongoDB schema and interface for each order.
 
-- `src/controllers` contains server handler functions for each endpoint (create an order, get order, update one order, delete one order).
+- `src/controllers` contains server handler functions for each endpoint (create an order, get orders for an email, update one order, delete one order). In addition, `src/controllers/shopify.ts` makes the API call to Shopify REST Admin API.
 
 - `client/src` contains all React components. `src/routes` includes all route components accessible in the app.
 
-- `client/src/controller` contains a component that handles the API call to the Shopify Admin API. The app only makes 1 API call. All routes and components display product information based on returned results.
+- `client/src/controller` contains a component that handles the API call to retrieve product data from the Express server. The app is optimized to make only 1 API call. All components that display product information use the returned results.
 
 ## Third Party RESTful API
 
-Shopify Admin API
+Shopify REST Admin API
 
 ## UI library
 
