@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 import express, { Request, Response } from 'express';
+import path from 'path';
 import mongoose from 'mongoose';
 
 // Controllers (route handlers)
@@ -15,6 +16,7 @@ const mongoURI = process.env.MONGODB_URI;
 
 const app = express();
 app.use(express.json());
+app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
 
 // 4. Connect to MongoDB
 mongoose.connect('mongodb://localhost:27017/shopfront' || mongoURI)
