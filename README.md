@@ -31,9 +31,9 @@
 
 An E-commerce web application to purchase items, powered by Shopify
 
-## Deployed Link
+<!-- ## Deployed Link
 
-Hosted on AWS: [shop front](http://18.220.110.158/)
+Hosted on AWS: [shop front](http://18.220.110.158/) -->
 
 ## JS Library/Framework
 
